@@ -14,22 +14,29 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUserByNameAndPwd(String username, String pwd) {
+	public User getUserByNameAndPwd(String username, String userPwd) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		User user=userDao.getByNameAndPwd(username, userPwd);
+		return user;
 	}
 
 	@Override
-	public boolean isNameVaild(String username) {
+	public boolean isNameVaild(String username) throws Exception {
 		// TODO Auto-generated method stub
-
-		return false;
+		User user=userDao.getByName(username);
+		if(user==null){
+			return true;
+		}
+		else
+			return false;
 	}
 
 	@Override
-	public List<User> findAll() {
+	public List<User> findAll() throws Exception {
+		//User user=new User();
+		return userDao.findall();
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
 	}
 
 }

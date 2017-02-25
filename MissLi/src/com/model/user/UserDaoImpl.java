@@ -40,20 +40,33 @@ public class UserDaoImpl implements UserDao{
 		String sql="select * from student where username=?";
 		List<Object>paramList=new ArrayList<Object>();
 		paramList.add(userName.trim());
-		List<User> username=getUserList(sql,paramList);
-		return null;
+		List<User> userList=getUserList(sql,paramList);
+		if(userList.isEmpty()||userList==null){
+			return null;
+		}
+		return userList.get(0);
 	}
 
 	@Override
-	public User getByNameAndPwd(String userName, String userPwd) {
+	public User getByNameAndPwd(String userName, String userPwd) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		String sql="select * from user where userName=? and password =?";
+		List<Object> paramList =new ArrayList<Object>();
+		paramList.add(userName);
+		paramList.add(userPwd);
+		List<User> userList=getUserList(sql,paramList);
+		if(userList==null){
+			return null;
+		}
+		else
+			return userList.get(0);
+		//return null;
 	}
 	private List<User> getUserList(String sql,List<Object> paramList) throws Exception{
 		List<User> userList=new ArrayList<User>();
 		List<Map<String,String>> userMapList =DbUtil.getQueryList(sql, paramList);
 		if(userMapList==null||userMapList.isEmpty()){  //获取的用户数量为0
-			return userList; //返回一个节点数为0的List<User>类对象
+			return null; //返回一个节点数为0的List<User>类对象
 		}
 		for(Map<String,String> userMap:userMapList){
 			Iterator<Entry<String,String>> userEntryIt=userMap.entrySet().iterator();
