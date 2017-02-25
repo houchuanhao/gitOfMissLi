@@ -6,5 +6,5 @@ public interface UserDao {  //dao²ã¸ºÔğÓë³Ö¾Ã»¯¶ÔÏóµÄ½»»¥£¬·â×°ÁËÊı¾İµÄÔöÉ¾¸Ä²éµ
 	int save(User user) throws Exception;
 	List<User> findall() throws Exception;  //»ñÈ¡ËùÓĞÓÃ»§
 	User getByName(String userName) throws Exception;
-	User getByNameAndPwd(String userName,String userPwd) throws Exception;
+	User getByNameAndPwd(String userName,String password) throws Exception;
 }

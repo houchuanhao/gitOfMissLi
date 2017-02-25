@@ -2,7 +2,12 @@ package com.model.user;
 
 import java.util.List;
 //Service位于业务逻辑层,依赖于DAO层的组件，无需关注底层的实现细节，专注于业务逻辑的处理
+/*
+ * 通过调用UserDao来实现UserService接口,UserServiceImpl与UserDaoImpl只实现了相应的接口
+ * 并没有成员变量,由于要实现接口，所以成员函数不能使静态的
+*/
 public class UserServiceImpl implements UserService{
+	//
 	private static UserDao userDao=new UserDaoImpl();  //DAO（数据访问层）层
 	@Override
 	public int addUser(User user) throws Exception {
@@ -14,9 +19,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUserByNameAndPwd(String username, String userPwd) throws Exception {
+	public User getUserByNameAndPwd(String username, String password) throws Exception {
 		// TODO Auto-generated method stub
-		User user=userDao.getByNameAndPwd(username, userPwd);
+		User user=userDao.getByNameAndPwd(username, password);
 		return user;
 	}
 

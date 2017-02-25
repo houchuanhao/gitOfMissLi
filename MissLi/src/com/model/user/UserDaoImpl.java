@@ -48,12 +48,12 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User getByNameAndPwd(String userName, String userPwd) throws Exception {
+	public User getByNameAndPwd(String userName, String password) throws Exception {
 		// TODO Auto-generated method stub
 		String sql="select * from user where userName=? and password =?";
 		List<Object> paramList =new ArrayList<Object>();
 		paramList.add(userName);
-		paramList.add(userPwd);
+		paramList.add(password);
 		List<User> userList=getUserList(sql,paramList);
 		if(userList==null){
 			return null;
