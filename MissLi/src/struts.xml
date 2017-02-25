@@ -4,6 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+<!--
 	<constant name="struts.action.extension" value="action,do"></constant>
 	<package name="test" namespace="/new" extends="struts-default">
 		<action name="login" class="com.action.LoginAction">
@@ -11,18 +12,22 @@
 			<result name="fall">/addModular.html</result>
 		</action>
 	</package>
+	-->
 	<package name="default" extends="struts-default">
 	<interceptors>
 		<interceptor-stack name="tokenStack">
 			<interceptor-ref name="token">
-			<param name="excludeMethods">   <!-- 用来给inteceptor子元素传递参数-->
-			input
-			</param>
+				<param name="excludeMethods">input</param>
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack" />
 		</interceptor-stack>
 	</interceptors>
-	<action name="register" method="{1}"></action>
+	<action name="register" method="{1}" class="com.model.user.UserAction">
+		<interceptor-ref name="tokenStack"/>
+		<result name="invalid.token">/signUp.jsp</result>
+		<result name="INPUT">/signUp.jsp</result>
+		<result>/registerSuccess.jsp</result>
+	</action>
 	</package>
 	<!-- Add packages here -->
 </struts>

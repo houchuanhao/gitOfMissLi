@@ -75,7 +75,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		response.getWriter().write("{\"isNameVaild\":"+isNameVaild+"}");
 		return null;
 	}
-	public String Input(){
+	public String input(){
 		return INPUT;
 	}// 
 	@Override
