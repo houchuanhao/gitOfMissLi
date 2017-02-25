@@ -1,8 +1,10 @@
 package com.model.user;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.db.*;
 public class UserDaoImpl implements UserDao{
@@ -50,9 +52,28 @@ public class UserDaoImpl implements UserDao{
 	private List<User> getUserList(String sql,List<Object> paramList) throws Exception{
 		List<User> userList=new ArrayList<User>();
 		List<Map<String,String>> userMapList =DbUtil.getQueryList(sql, paramList);
+		if(userMapList==null||userMapList.isEmpty()){  //获取的用户数量为0
+			return userList; //返回一个节点数为0的List<User>类对象
+		}
+		for(Map<String,String> userMap:userMapList){
+			Iterator<Entry<String,String>> userEntryIt=userMap.entrySet().iterator();
+			User user=new User();
+			while(userEntryIt.hasNext()){
+				Entry<String,String> userEntry=userEntryIt.next();
+				if(userEntry.getKey().equals("id")){
+					user.setId(userEntry.getValue());
+				}
+				if(userEntry.getKey().equals("username")){
+					user.setUsername(userEntry.getValue());
+				}
+				if(userEntry.getKey().equals("password")){
+					user.setPassword(userEntry.getValue());
+				}
+			}
+			userList.add(user);
+		}
 		
-		
-		return null;
+		return userList;
 		
 	}
 
