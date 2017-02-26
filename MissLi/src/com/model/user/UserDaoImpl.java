@@ -37,11 +37,11 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public User getByName(String userName) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="select * from student where username=?";
+		String sql="select * from user where username=?";
 		List<Object>paramList=new ArrayList<Object>();
 		paramList.add(userName.trim());
 		List<User> userList=getUserList(sql,paramList);
-		if(userList.isEmpty()||userList==null){
+		if(userList==null||userList.isEmpty()){
 			return null;
 		}
 		return userList.get(0);
