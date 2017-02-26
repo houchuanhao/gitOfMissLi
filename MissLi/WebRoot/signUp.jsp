@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  这里是signUp.jsp
   <a href="index.jsp">首页</a>
   <s:actionerror/>
   <s:form action="register!register" method="post">

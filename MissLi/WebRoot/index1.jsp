@@ -24,8 +24,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <s:if test="#session.user==null">还未登录
+  </s:if>
+  <s:else>
+  
+  </s:else>
   <s:url action="register" method="input"/>
-  <a href='<s:url action="register" />' >注册</a>
+  <a href='<s:url action="register_input" />' >注册</a>
     This is my JSP page. <br>
     <form action="new/login.action" method="post">
     	<input type="text" name="username" ><br>

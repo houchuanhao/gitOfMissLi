@@ -1,5 +1,5 @@
 package com.action;
-
+/*
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -52,3 +52,5 @@ public class LoginAction {
 	}
 
 }
+
+*/

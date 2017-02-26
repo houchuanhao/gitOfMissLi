@@ -1,4 +1,4 @@
-<%@ page import="com.model.Connecter" %>
+
 <%@ page import="java.sql.*,javax.sql.DataSource,javax.naming.*" %><%--
   Created by IntelliJ IDEA.
   User: Administrator

@@ -13,19 +13,11 @@
 		</action>
 	</package>
 	-->
+	
 	<package name="default" extends="struts-default">
-	<interceptors>
-		<interceptor-stack name="tokenStack">
-			<interceptor-ref name="token">
-				<param name="excludeMethods">input</param>
-			</interceptor-ref>
-			<interceptor-ref name="defaultStack" />
-		</interceptor-stack>
-	</interceptors>
-	<action name="register" method="{1}" class="com.model.user.UserAction">
-		<interceptor-ref name="tokenStack"/>
-		<result name="invalid.token">/signUp.jsp</result>
-		<result name="INPUT">/signUp.jsp</result>
+	<action name="register!*" method="{1}" class="com.model.user.UserAction">
+		<result name="invalid.token">/MyJsp.jsp</result>   <!-- 重复提交 -->
+		<result name="input">/signUp.jsp</result>
 		<result>/registerSuccess.jsp</result>
 	</action>
 	</package>
