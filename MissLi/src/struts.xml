@@ -15,10 +15,13 @@
 	-->
 	
 	<package name="default" extends="struts-default">
-	<action name="register!*" method="{1}" class="com.model.user.UserAction">
+	<action name="register_*" method="{1}" class="com.model.user.UserAction">
 		<result name="invalid.token">/MyJsp.jsp</result>   <!-- 重复提交 -->
 		<result name="input">/signUp.jsp</result>
 		<result>/registerSuccess.jsp</result>
+	</action>
+	<action name="user!*" method="{1}" class="com.model.user.UserAction">
+		<result>/index1.jsp</result>
 	</action>
 	</package>
 	<!-- Add packages here -->

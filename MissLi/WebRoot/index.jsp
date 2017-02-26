@@ -1,4 +1,3 @@
-<%@ page import="com.Connecter" %>
 <%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -127,32 +126,24 @@
         function signup() {  //注册
             var userName=$("#signUserName").val();
             var password=$("#signPassword").val();
+            var isNameValid=true;
             var email=$("#signEmail").val();
-            //alert(email);
-            var query = new AV.Query('_User');
-            // 查询 priority 是 0 的 Todo
-            query.equalTo('username', userName);
-            var user = new AV.User();
-            // 设置用户名
-            user.setUsername(userName);
-            // 设置密码
-            user.setPassword(password);
-            // 设置邮箱
-            user.setEmail(email);
-            user.signUp().then(function (loginedUser) {
-                console.log(loginedUser);
-             //   user.l
-                var currentUser = AV.User.current();
-                currentUser.logOut();
-               // currentUser.l
-                alert("注册成功，我们已经将验证信息发送至您的邮箱"+email+"，请注意查收");
-                $('#login').modal('show');
-                $('#signUp').modal('hide');
-
-            }, function (error) {
-                alert(error.message);
-                console.log(error.message);
-            });
+            $.ajax({
+            type:"POST",
+            url:"user_checkUser.action",
+            data:"userName="+userName,
+            dataType:"json",
+            success:function(data,textStatus){
+            		console.log(data);
+            		isNameValid=data['isNameValid'];
+            		if(isNameValid){
+            		alert("用户名可用");
+            		}
+            		else{
+            		alert("不可用");
+            		}
+            }
+            })
         }
         function forget(){
             var email=$("#forgetEmail").val();
@@ -211,7 +202,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="nav">
                         <li >
-                            <a href="frame0.jsp" target="mainIframe">所有DIY</a>
+                            <a href="frame0.jsp" target="mainIframe">提醒</a>
                         </li>
                         <li>
                             <a href="buyModular.jsp" target="mainIframe">购买模块</a>
@@ -237,7 +228,7 @@
             <!--上面是导航栏---->
 
             <!-----下面是内联框架------->
-            <iframe id="Iframe1" src="frame0.jsp" name="mainIframe">
+            <iframe id="Iframe1" src="login.jsp" name="mainIframe">
 
             </iframe>
             <!--------上面是内联框架-------->
@@ -336,44 +327,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="shop" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" >
-                    购物车
-                </h4>
-            </div>
-            <div class="modal-body" id="shoper">
-                <%
-                Connecter.createConnection();
-                String sql="select * from shop,Modular where Modular.id=shop.id";
-                ResultSet resultSet=Connecter.statement.executeQuery(sql);
-                while(resultSet.next()){
-                    out.print("<p>"+resultSet.getString("mName"));
-                    out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp");
-                    out.print("<small>"+resultSet.getString("mPrice"));
-                    out.print("</small></p>");
-                }
-
-                %>
-            </div>
-            <div class="modal-footer">
-                <a href="clean.jsp" target="mainIframe">
-                    <p type="button" class="btn  btn-block btn-info" onclick="delShop()">结算</p>
-                </a>
-                <br>
-                <a href="clean.jsp" target="mainIframe">
-                    <p type="button" class="btn  btn-block btn-info" onclick="delShop()">清空</p>
-                </a>
-                <br>
-                <button type="button" class="btn  btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!--下面是登陆成功-->
 <div class="modal fade" id="concel" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
