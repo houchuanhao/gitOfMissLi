@@ -23,7 +23,7 @@
 	<action name="user_*" method="{1}" class="com.model.user.UserAction">
 		<result>/index1.jsp</result>
 	</action>
-	<action name="uploadFile" class="com.model.file.UploadFileAction">
+	<action name="uploadFile" class="com.model.file.FileAction">
 		<result>/uploadFile.jsp</result>
 	</action>
 	</package>

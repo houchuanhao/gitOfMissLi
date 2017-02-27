@@ -1,11 +1,16 @@
 package com.model.file;
+import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
+import java.text.SimpleDateFormat;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -54,7 +59,7 @@ public class UploadFileAction extends ActionSupport{
 }
 */
 
-public class UploadFileAction extends ActionSupport
+public class FileAction extends ActionSupport
 {
     private String username;
     
@@ -109,8 +114,12 @@ public class UploadFileAction extends ActionSupport
     
     public String execute() throws Exception
     {
+    	HttpServletRequest request=ServletActionContext.getRequest();
+    	username=(String) request.getSession().getAttribute("userName");
         String root = ServletActionContext.getServletContext().getRealPath("/upload");
         
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
         InputStream is = new FileInputStream(file);
         
         OutputStream os = new FileOutputStream(new File(root, fileFileName));	

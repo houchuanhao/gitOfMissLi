@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		String sql="select * from user where username=?";
 		List<Object>paramList=new ArrayList<Object>();
-		paramList.add(userName.trim());
+		paramList.add(userName);
 		List<User> userList=getUserList(sql,paramList);
 		if(userList==null||userList.isEmpty()){
 			return null;
@@ -79,16 +79,18 @@ public class UserDaoImpl implements UserDao{
 				if(userEntry.getKey().equals("id")){
 					user.setId(userEntry.getValue());
 				}
-				if(userEntry.getKey().equals("username")){
+				
+				if(userEntry.getKey().equals("userName")){
 					user.setUsername(userEntry.getValue());
 				}
 				if(userEntry.getKey().equals("password")){
 					user.setPassword(userEntry.getValue());
 				}
-				if(userEntry.getKey().equals("register")){
-					user.setRegister(userEntry.getValue());
+				if(userEntry.getKey().equals("email")){
+					user.setEmail(userEntry.getValue());
 				}
 			}
+			
 			userList.add(user);
 		}
 		

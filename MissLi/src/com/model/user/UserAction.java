@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.Configuration;
 import com.StrUtil.JsonStr;
+import com.mail.SendMail;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport implements ServletRequestAware{
@@ -83,8 +85,8 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		return INPUT;
 	}
 	public String confirm() throws Exception{ //验证邮箱
-		User user=userService.getUserByName(username);
 		
+		System.out.print("验证邮箱ing");
 		return null;
 	}
 	//
@@ -93,32 +95,42 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		initResponse();
 		String userName=servletRequest.getParameter("userName");
 		String password=servletRequest.getParameter("password");
-		String emial=servletRequest.getParameter("email");
+		String email=servletRequest.getParameter("email");
 		boolean isNameVaild=userService.isNameVaild(userName);
 		JsonStr jstr=new JsonStr();
-		
-		jstr.put("isNameVaild", isNameVaild);
 		System.out.print("userAction.signUp函数中"+"isNameVaild"+isNameVaild);
 		//--------------
+		String confirmUrl="http://"+Configuration.address+"/MissLi/user_confirm.action?username="+userName+"?password="+password+"?email="+email;
 		if(isNameVaild){  //用户名可用
 			System.out.println("用户名可用");
-			jstr.put("isVaild", "true");
+			//jstr.put("isVaild", "true");
 			User sUser=new User();
 			sUser.setUsername(userName);
 			sUser.setPassword(password);
-			
 			userService.addUser(sUser);
-			
-			
+			//然后将邮件发出去
 		}else{
 			User user=userService.getUserByName(userName); //注册了但是没有验证
-			if(user.getEmail()==null||user.getEmail().equals("null")||user.getEmail().equals("")){
-				jstr.put("isVaild", "true");
+			
+			if(user.getEmail()==null||user.getEmail().equals("NULL")||user.getEmail().equals("")){
+				//将邮件发出去
+				//jstr.put("isVaild", "true");
 			}
 			else{
-				jstr.put("isVaild", "false");
+				isNameVaild=false;
+				//jstr.put("isVaild", "false");	
 			}
 		}
+		
+		
+		
+		if(isNameVaild){
+			SendMail mail=new SendMail();
+			mail.send(email, "辅助教学管理系统用户注册", "请点击以下连接完成邮箱验证"+confirmUrl);
+		}
+		jstr.put("isNameVaild", isNameVaild);
+		/*String str="http://"+Configuration.address+"/MissLi/user_confirm.action?username="+userName+"?password="+password+"?email="+email;
+		jstr.put("address", str);*/
 		System.out.println(jstr.toStr());
 		response.getWriter().write(jstr.toStr());
 		return null;

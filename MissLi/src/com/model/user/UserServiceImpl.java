@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
 	public User getUserByName(String userName) throws Exception {
 		// TODO Auto-generated method stub
 		User user=userDao.getByName(userName);
-		return null;
+		return user;
 	}
 
 	@Override

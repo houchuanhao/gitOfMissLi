@@ -4,7 +4,6 @@ public class User {
 	public String username;
 	public String id;
 	public String password;
-	public String register;
 	public String email;
 	public String getEmail() {
 		return email;
@@ -15,12 +14,7 @@ public class User {
 	public String getId() {
 		return id;
 	}
-	public String getRegister() {
-		return register;
-	}
-	public void setRegister(String register) {
-		this.register = register;
-	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

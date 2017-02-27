@@ -238,18 +238,27 @@ return true;
 * 输入参数： <br>
 * 返回类型：
 */
+public void send(String email,String subject,String content){
+
+	SendMail sendmail = new SendMail();
+	sendmail.setHost("smtp.163.com");// smtp.mail.yahoo.com.cn/smtp.163.com
+	sendmail.setUserName("congeler@163.com");// 您的邮箱用户名
+	sendmail.setPassWord("159753123Qwe");// 您的邮箱密码
+	sendmail.setTo(email);// 接收者
+	sendmail.setFrom("congeler@163.com");// 发送者
+	sendmail.setSubject(subject );
+	sendmail.setContent(content);
+	// sendmail.attachfile("D:\\config.ini");
+	sendmail.sendMail();
+	
+}
+
+
+
 public static void main(String[] args) {
 System.out.println("...");
-SendMail sendmail = new SendMail();
-sendmail.setHost("smtp.163.com");// smtp.mail.yahoo.com.cn/smtp.163.com
-sendmail.setUserName("congeler@163.com");// 您的邮箱用户名
-sendmail.setPassWord("159753123Qwe");// 您的邮箱密码
-sendmail.setTo("893266122@1qq.com");// 接收者
-sendmail.setFrom("congeler@163.com");// 发送者
-sendmail.setSubject("你好123" );
-sendmail.setContent("我爱你3333");
-// sendmail.attachfile("D:\\config.ini");
-sendmail.sendMail();
-System.out.println("end");
+SendMail mail=new SendMail();
+mail.send("893266122@qq.com","验证ing","localhost://");
+
 }
 }
