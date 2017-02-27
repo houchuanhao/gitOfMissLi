@@ -15,6 +15,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import com.Configuration;
 import com.StrUtil.JsonStr;
 import com.mail.SendMail;
+import com.mysql.fabric.Response;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport implements ServletRequestAware{
@@ -61,6 +62,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 	//3
 	public String logout(){
 		servletRequest.getSession().setAttribute("user", null);
+		
 		return SUCCESS;
 	}
 	//4   用于获取所以得用户

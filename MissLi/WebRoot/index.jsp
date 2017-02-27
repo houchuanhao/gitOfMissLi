@@ -16,6 +16,7 @@
     <link href='css/font.css' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/av-min-1.2.1.js"></script>
     <!-- Custom Theme files -->
@@ -84,16 +85,15 @@
          *///li
               // a ul
         function changeState(){ //更改状态 登陆/登出
-            var currentUser = AV.User.current();
-            console.log(currentUser);
-            if (currentUser) { //已经登陆状态
-                var username=currentUser.getUsername();
+        	var userName=null;
+            userName = $.cookie("userName");
+            if (userName) { //转到登录状态
                 var par_a = $("#loginDom").parent();//par1是链接到隐藏窗体的标签
                 var par_li=par_a.parent();  //par_li是<li>标签
                 $("#loginDom").remove();
                 par_a.remove();
                 par_li.attr("class","dropdown");
-                if(username=="houchuanhao"){  //是管理员
+                if(userName=="houchuanhao"){  //是管理员
                     var child1=$("<li> <a href='addModular.html' target='mainIframe'>增加模块</a> </li>");
                     var child2=$("<li> <a href='updateModular.jsp' target='mainIframe'>编辑模块</a> </li>");
                     $("#nav").append(child1);
@@ -107,16 +107,16 @@
                 li_a.html(username);
                 par_li.append(li_a);
 *///<a href="frame3.jsp" target="mainIframe" id="myDiy">我的diy</a>
-                var li_a=$("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>"+username+"&nbsp;&nbsp;&nbsp;<strong class='caret'></strong></a>");
+                var li_a=$("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>"+userName+"&nbsp;&nbsp;&nbsp;<strong class='caret'></strong></a>");
                 var li_ul=$("<ul class='dropdown-menu'> <li> <a href='frame3.jsp' target='mainIframe' id='myDiy'>我的DIY</a> </li> <li> <a href='#shop' data-toggle='modal' >我的购物车</a> </li>     <li class='divider'> </li> <li> <a href='#concel' data-toggle='modal'>注销</a> </li> </ul>");
                 par_li.append(li_a);
                 par_li.append(li_ul);
                // par_a.html(username);
                 // par_a.attr("href","#");
                 //修改mydiy的连接，给它加上用户名
-                $("#myDiy").attr("href","frame3.jsp?UserName="+username);
+                $("#myDiy").attr("href","frame3.jsp?UserName="+userName);
             }
-            else{
+            else{  //登出
                 $("#log").children(":first").remove();
                 $("#log").children(":first").remove();
                 var btn=$("<a href='#login' data-toggle='modal'> <button  id='loginDom' type='button' class='btn btn-default btn-success btn-block'>&nbsp;&nbsp;&nbsp;登陆&nbsp;&nbsp;&nbsp;</button> </a>")
@@ -162,13 +162,18 @@
             dataType:"json",
             success:function(data1,textStatus){
             		console.log(data1);
-            		isNameVaild=data1['isNameVaild'];
-            		if(!isNameVaild){  //
-            			alert("用户名已被注册");
+            		loginSuccess=data1['loginSuccess'];
+            		if(!loginSuccess){  //
+            			alert("用户名密码错误");
+            		}else
+            		{
+            			$.cookie("userName",username);
+            			alert("登录成功");
             		}
 
             }
             })
+            changeState();
          /*   
             AV.User.logIn(username, password).then(function (loginedUser) {
                 //登陆成功
@@ -219,10 +224,10 @@
                             <a href="frame0.jsp" target="mainIframe">提醒</a>
                         </li>
                         <li>
-                            <a href="buyModular.jsp" target="mainIframe">购买模块</a>
+                            <a href="buyModular.jsp" target="mainIframe">事务</a>
                         </li>
                         <li>
-                            <a href="frame2.html" target="mainIframe">发布DIY</a>
+                            <a href="frame2.html" target="mainIframe">个人信息</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -359,13 +364,14 @@
     </div>
 </div>
 <script type="text/javascript" >
-   // Alert("hello");
-    changeState();
+    //下面用于注销
     $("#logOut").click(function () {
+    	$.cookie("userName",null);
         AV.User.logOut();
         // 现在的 currentUser 是 null 了
         $("#concel").modal('hide');
-        changeState();
+        window.location.href='index.jsp';
+        //changeState();
         location.reload();
         // alert("注销成功");
     });
