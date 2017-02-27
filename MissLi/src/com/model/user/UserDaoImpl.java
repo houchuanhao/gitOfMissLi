@@ -56,7 +56,9 @@ public class UserDaoImpl implements UserDao{
 		String sql="select * from user where userName=? and password =?";
 		List<Object> paramList =new ArrayList<Object>();
 		paramList.add(userName);
+		
 		paramList.add(password);
+		
 		List<User> userList=getUserList(sql,paramList);
 		if(userList==null){
 			return null;

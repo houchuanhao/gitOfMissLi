@@ -155,6 +155,21 @@
         function login() { //登陆
             var username=$("#logUserName").val();
             var password=$("#logPassword").val();
+            $.ajax({
+            type:"POST",
+            url:"user_signIn.action",
+            data:{"userName":username,"password":password},
+            dataType:"json",
+            success:function(data1,textStatus){
+            		console.log(data1);
+            		isNameVaild=data1['isNameVaild'];
+            		if(!isNameVaild){  //
+            			alert("用户名已被注册");
+            		}
+
+            }
+            })
+         /*   
             AV.User.logIn(username, password).then(function (loginedUser) {
                 //登陆成功
                 if(!loginedUser._serverData.emailVerified){ //登陆失败，未注册
@@ -173,6 +188,7 @@
             }, function (error) {
                 alert("登陆失败"+error.message);
             });
+            */
             // $("#login").modal('hide');
         }
         function Alert(str) {

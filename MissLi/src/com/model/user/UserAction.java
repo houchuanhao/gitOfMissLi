@@ -1,8 +1,11 @@
 package com.model.user;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.jms.Session;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -98,14 +101,43 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		cUser.setEmail(email);
 		cUser.setPassword(password);
 		cUser.setUsername(userName);
-		userService.modifyUser(user);
+		userService.modifyUser(cUser);
 		
 		return null;
 	}
 	//
+	public String signIn(){  //登录
+		String userName=servletRequest.getParameter("userName");
+		String password=servletRequest.getParameter("password");
+		HttpServletResponse response=getResponse();
+		User loginUser=null;
+		JsonStr jStr=new JsonStr();
+		try {
+			loginUser=userService.getUserByNameAndPwd(userName, password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(loginUser==null){ //用户名或密码错误
+			jStr.put("loginSuccess", false);
+		}
+		else  //登录成功
+		{
+			Cookie cookie=new Cookie("userName", userName);
+			response.addCookie(cookie);
+			servletRequest.getSession().setAttribute("userName", userName);
+			jStr.put("loginSuccess", true);
+		}
+		try {
+			response.getWriter().write(jStr.toStr());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public String signUp() throws Exception{ //注册
-		HttpServletResponse response=ServletActionContext.getResponse();
-		initResponse();
+		HttpServletResponse response=getResponse();
 		String userName=servletRequest.getParameter("userName");
 		String password=servletRequest.getParameter("password");
 		String email=servletRequest.getParameter("email");
@@ -113,7 +145,8 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		JsonStr jstr=new JsonStr();
 		System.out.print("userAction.signUp函数中"+"isNameVaild"+isNameVaild);
 		//--------------
-		String confirmUrl="http://"+Configuration.address+"/MissLi/user_confirm.action?username="+userName+"?password="+password+"?email="+email;
+		String confirmUrl="http://"+Configuration.address+"/MissLi/user_confirm.action?username="+userName+"&password="+password+"&"
+				+ "email="+email;
 		if(isNameVaild){  //用户名可用
 			System.out.println("用户名可用");
 			//jstr.put("isVaild", "true");
@@ -207,6 +240,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		user.username=username;
 		user.password=password;
 		
+	}
+	private  HttpServletResponse getResponse(){
+		HttpServletResponse response=ServletActionContext.getResponse();
+		initResponse();
+		return response;
 	}
 
 }

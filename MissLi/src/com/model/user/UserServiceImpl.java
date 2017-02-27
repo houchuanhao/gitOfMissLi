@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int modifyUser(User user) {
 		// TODO Auto-generated method stub
+		userDao.modifyUser(user);
 		return 0;
 	}
 
