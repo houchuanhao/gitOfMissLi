@@ -1,6 +1,7 @@
 package com.model.user;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,7 +87,19 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 	}
 	public String confirm() throws Exception{ //验证邮箱
 		
+		String userName=servletRequest.getParameter("username");
+		String password=servletRequest.getParameter("password");
+		String email=servletRequest.getParameter("email");
 		System.out.print("验证邮箱ing");
+		Map<String ,String[]> map=servletRequest.getParameterMap();
+		HttpServletResponse response=ServletActionContext.getResponse();
+		initResponse();
+		User cUser=new User();
+		cUser.setEmail(email);
+		cUser.setPassword(password);
+		cUser.setUsername(userName);
+		userService.modifyUser(user);
+		
 		return null;
 	}
 	//
@@ -114,6 +127,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 			
 			if(user.getEmail()==null||user.getEmail().equals("NULL")||user.getEmail().equals("")){
 				//将邮件发出去
+				isNameVaild=true;
 				//jstr.put("isVaild", "true");
 			}
 			else{
@@ -126,7 +140,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		
 		if(isNameVaild){
 			SendMail mail=new SendMail();
-			mail.send(email, "辅助教学管理系统用户注册", "请点击以下连接完成邮箱验证"+confirmUrl);
+			mail.send(email, "辅助教学管理系统访问以下网址前往注册", confirmUrl);
 		}
 		jstr.put("isNameVaild", isNameVaild);
 		/*String str="http://"+Configuration.address+"/MissLi/user_confirm.action?username="+userName+"?password="+password+"?email="+email;

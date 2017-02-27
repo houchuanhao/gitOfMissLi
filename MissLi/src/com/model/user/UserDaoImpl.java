@@ -100,9 +100,33 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public int modifyUser(User user) {
-		
+		if(user==null)
+			return 0;
+		String sql="update user set password=?,email=?  where userName=?";
+		//String sql="insert into user(username,password) values(?,?)";
+		System.out.println(sql);
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(user.getPassword());
+		paramList.add(user.getEmail());
+		paramList.add(user.getUsername());
+		System.out.print(paramList.toString());
+		int result=0;
+		try {
+			result = DbUtil.execute(sql,paramList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.print(result);
+		if(result>=1){
+			try {
+				user=getByName(user.getUsername());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		// TODO Auto-generated method stub
-		return 0;
+		return result;
 	}
-
 }
