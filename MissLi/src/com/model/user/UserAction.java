@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.StrUtil.JsonStr;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport implements ServletRequestAware{
-
+	private String email;
 	private String username;
 	private String password;
 	private String cinfirmPassword;
@@ -64,7 +65,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		return "userList";
 	}
 	//5  
-	public String checkUser() throws Exception{
+	public String checkUser() throws Exception{  //参考范例的代码
 		String userName=servletRequest.getParameter("userName");
 		boolean isNameVaild=userService.isNameVaild(userName);
 		HttpServletResponse response=ServletActionContext.getResponse();
@@ -73,18 +74,67 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		response.setDateHeader("Expires", 0);
 		response.setContentType("text/html");
 		response.getWriter().write("{\"isNameVaild\":"+isNameVaild+"}");
+		System.out.println("{\"isNameVaild\":"+isNameVaild+"}11");
+		HttpServletResponse response1=ServletActionContext.getResponse();
+		System.out.println(response1.getHeaderNames()+"responst1");
 		return null;
 	}
 	public String input(){
 		return INPUT;
-	}// 
+	}
+	public String confirm() throws Exception{ //验证邮箱
+		User user=userService.getUserByName(username);
+		
+		return null;
+	}
+	//
+	public String signUp() throws Exception{ //注册
+		HttpServletResponse response=ServletActionContext.getResponse();
+		initResponse();
+		String userName=servletRequest.getParameter("userName");
+		String password=servletRequest.getParameter("password");
+		String emial=servletRequest.getParameter("email");
+		boolean isNameVaild=userService.isNameVaild(userName);
+		JsonStr jstr=new JsonStr();
+		
+		jstr.put("isNameVaild", isNameVaild);
+		System.out.print("userAction.signUp函数中"+"isNameVaild"+isNameVaild);
+		//--------------
+		if(isNameVaild){  //用户名可用
+			System.out.println("用户名可用");
+			jstr.put("isVaild", "true");
+			User sUser=new User();
+			sUser.setUsername(userName);
+			sUser.setPassword(password);
+			
+			userService.addUser(sUser);
+			
+			
+		}else{
+			User user=userService.getUserByName(userName); //注册了但是没有验证
+			if(user.getEmail()==null||user.getEmail().equals("null")||user.getEmail().equals("")){
+				jstr.put("isVaild", "true");
+			}
+			else{
+				jstr.put("isVaild", "false");
+			}
+		}
+		System.out.println(jstr.toStr());
+		response.getWriter().write(jstr.toStr());
+		return null;
+	}
 	@Override
 	public void setServletRequest(HttpServletRequest request){
 		this.servletRequest=request;
 	}
-	
-	
-	
+
+	public void initResponse(){ //初始化相应
+		HttpServletResponse response=ServletActionContext.getResponse();
+		response.setHeader("Cache-control", "no-store");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+		response.setContentType("text/html");
+	}
 	
 	
 	
@@ -126,6 +176,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 	}
 	public HttpServletRequest getServletRequest() {
 		return servletRequest;
+	}
+	public void configUser(){
+		user.username=username;
+		user.password=password;
+		
 	}
 
 }

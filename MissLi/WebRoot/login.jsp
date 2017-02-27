@@ -44,7 +44,7 @@
 	DataSource ds=(DataSource)initCtx.lookup("java:comp/env/jdbc/Struts2DB");
 	Connection conn=ds.getConnection();
 	Statement stmt=conn.createStatement();
-	String sql="insert into user values('222','333')";
+	String sql="insert into user(username,password) values('222','333')";
 	stmt.executeUpdate(sql);
 	out.print(sql);
 	//out.print("<h1>"+rs.getRow()+"</h1>");

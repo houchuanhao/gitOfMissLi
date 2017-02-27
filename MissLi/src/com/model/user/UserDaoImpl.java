@@ -13,11 +13,15 @@ public class UserDaoImpl implements UserDao{
 	public int save(User user) throws Exception {  //
 		if(user==null)
 			return 0;
-		String sql="insert into user('username','password') values(?,?)";
+		String sql="insert into user(username,password) values(?,?)";
+		System.out.println(sql);
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(user.getUsername());
 		paramList.add(user.getPassword());
+		//paramList.add(user.getEmail());
+		System.out.print(paramList.toString());
 		int result=DbUtil.execute(sql,paramList);
+		System.out.print(result);
 		if(result>=1){
 			user=getByName(user.getUsername());
 		}
@@ -46,7 +50,6 @@ public class UserDaoImpl implements UserDao{
 		}
 		return userList.get(0);
 	}
-
 	@Override
 	public User getByNameAndPwd(String userName, String password) throws Exception {
 		// TODO Auto-generated method stub
@@ -82,12 +85,22 @@ public class UserDaoImpl implements UserDao{
 				if(userEntry.getKey().equals("password")){
 					user.setPassword(userEntry.getValue());
 				}
+				if(userEntry.getKey().equals("register")){
+					user.setRegister(userEntry.getValue());
+				}
 			}
 			userList.add(user);
 		}
 		
 		return userList;
 		
+	}
+
+	@Override
+	public int modifyUser(User user) {
+		
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -90,8 +90,20 @@ public class DbUtil {
      * @return
      * @throws Exception
      */
+	/*
+	 * 
+	 * 
+	 * 	Context initCtx=new InitialContext();
+	DataSource ds=(DataSource)initCtx.lookup("java:comp/env/jdbc/Struts2DB");
+	Connection conn=ds.getConnection();
+	Statement stmt=conn.createStatement();
+	String sql="insert into user(username,password) values('222','333')";
+	stmt.executeUpdate(sql);
+	out.print(sql);
+	 * */
 	//1
     public static int execute(String sql, List<Object> paramList) throws Exception {
+    	System.out.println("DbUtil"+sql+paramList.toString());
         if(sql == null || sql.trim().equals("")) {
             //logger.info("parameter is valid!");
         }
@@ -106,7 +118,13 @@ public class DbUtil {
             if(pstmt == null) {
                 return -1;
             }
+            try{
             result = pstmt.executeUpdate();
+            }
+            catch(Exception s){
+            	throw new Exception(s);
+            }
+            
         } catch (Exception e) {
             //logger.info(e.getMessage());
             throw new Exception(e);
@@ -188,6 +206,17 @@ public class DbUtil {
      * @return
      * @throws Exception
      */
+    /*	Context initCtx=new InitialContext();
+	DataSource ds=(DataSource)initCtx.lookup("java:comp/env/jdbc/Struts2DB");
+	Connection conn=ds.getConnection();
+	Statement stmt=conn.createStatement();
+	String sql="insert into user(username,password) values('222','333')";
+	stmt.executeUpdate(sql);
+	out.print(sql);
+     * 
+     * 
+     * 
+     * */
     //4
     private static Connection getConnection() throws Exception {
         InitialContext cxt = new InitialContext();

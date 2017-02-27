@@ -126,22 +126,20 @@
         function signup() {  //注册
             var userName=$("#signUserName").val();
             var password=$("#signPassword").val();
-            var isNameValid=true;
+            var isNameVaild=true;
             var email=$("#signEmail").val();
             $.ajax({
             type:"POST",
-            url:"user_checkUser.action",
-            data:"userName="+userName,
+            url:"user_signUp.action",
+            data:{"userName":userName,"password":password,"email":email},
             dataType:"json",
-            success:function(data,textStatus){
-            		console.log(data);
-            		isNameValid=data['isNameValid'];
-            		if(isNameValid){
-            		alert("用户名可用");
+            success:function(data1,textStatus){
+            		console.log(data1);
+            		isNameVaild=data1['isNameVaild'];
+            		if(!isNameVaild){  //
+            			alert("用户名已被注册");
             		}
-            		else{
-            		alert("不可用");
-            		}
+
             }
             })
         }

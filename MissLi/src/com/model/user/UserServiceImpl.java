@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
 	public boolean isNameVaild(String username) throws Exception {
 		// TODO Auto-generated method stub
 		User user=userDao.getByName(username);
-		if(user==null){
+		if(user==null){  //user==null 用户名为空
 			return true;
 		}
 		else
@@ -42,6 +42,20 @@ public class UserServiceImpl implements UserService{
 		return userDao.findall();
 		// TODO Auto-generated method stub
 		//return null;
+	}
+
+	@Override
+	public User getUserByName(String userName) throws Exception {
+		// TODO Auto-generated method stub
+		User user=userDao.getByName(userName);
+		return null;
+	}
+
+	@Override
+	public int modifyEmail(String userName, String email) {
+		// TODO Auto-generated method stub
+		
+		return 0;
 	}
 
 }
