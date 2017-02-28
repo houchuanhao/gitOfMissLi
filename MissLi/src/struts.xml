@@ -20,6 +20,9 @@
 		<result name="input">/signUp.jsp</result>
 		<result>/registerSuccess.jsp</result>
 	</action>
+	<action name="business"  class="com.model.business.BusinessAction">
+		<result name="SUCCESS123">/index.jsp</result>
+	</action>
 	<action name="user_*" method="{1}" class="com.model.user.UserAction">
 		<result>/index1.jsp</result>
 	</action>
