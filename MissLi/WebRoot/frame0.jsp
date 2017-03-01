@@ -212,6 +212,7 @@
             //q.append(s);
         }
     </script>
+    <script type="text/javascript" src="jedate/jedate.js"></script>
 </head>
 <body>
 <!---------下面是导航栏---->
@@ -234,10 +235,21 @@
 						 <input type="text" class="form-control" id="exampleInputEmail1" name="businessName" />
 					</div>
 					<div class="form-group">
+						 <label for="exampleInputEmail1">开始时间</label>
+						 <p class="datep">
+						 <input class="datainp form-control" id="datebut" type="text" placeholder="未选择"  readonly>
+						 <br><br>
+						 <input type="button" 
+onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD'})" value="选择时间" class="btn-default btn btn-success btn-block"></p>
+					</div>
+					<br><br>
+					<div class="form-group">
 						 <label for="exampleInputPassword1">说明</label>
 						 <textarea rows="5"  name="introduce" class="form-control" id="text"></textarea>
 					</div>
 					 <input type="submit" class="btn-default btn btn-success btn-block" value="添加"/>
+					 <br><br>
+					 <p class="btn-default btn btn-success btn-block">返回</p>
 				</form>
        		</div>
             <!--------上面是内联框架-------->
@@ -245,115 +257,12 @@
     </div>
 </div>
 <!-------------下面是遮罩窗体--->
-<div class="modal fade" id="signUp" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel1">
-                    注册
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label >用户名</label><input type="text" class="form-control" id="signUserName" />
-                    </div>
-                    <div class="form-group">
-                        <label >密码</label><input type="password" class="form-control" id="signPassword" />
-                    </div>
-                    <div class="form-group">
-                        <label >邮箱</label><input type="text" class="form-control" id="signEmail" />
-                    </div>
-                    <p type="submit" class="btn-default btn btn-success btn-block"   onclick="signup()">注册</p>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="login" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">
-                    登陆
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label >用户名</label><input type="text" class="form-control" id="logUserName" />
-                    </div>
-                    <div class="form-group">
-                        <label >密码</label><input type="password" class="form-control" id="logPassword" />
-                    </div>
-                    <div class="form-group">
-                        <p  class="btn btn-default btn-success btn-block" onclick="login()">登陆</p>
-                    </div>
-                    <div class="form-group">
-
-                        <div class="row clearfix">
-                            <div class="col-md-6 column">
-                                <a href="#forget" data-toggle="modal" data-dismiss="modal"><button class="btn btn-default btn-block btn-info">忘记密码</button></a>
-                            </div>
-                            <div class="col-md-6 column">
-                                <a href="#signUp" data-toggle="modal" data-dismiss="modal"><button class="btn btn-default btn-block btn-info">前去注册</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="forget" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" >
-                    忘记密码
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label >注册邮箱</label><input type="email" class="form-control" id="forgetEmail" />
-                    </div>
-                    <p type="submit" class="btn btn-default btn-success btn-block" onclick="forget()">找回密码</p>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--下面是登陆成功-->
-<div class="modal fade" id="concel" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <h1>确定要注销登陆吗?</h1>
-                <p class="btn btn-default btn-block btn-info" id="logOut">注销</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript" >
+
+//下面是时间插件
+    //jeDate.skin('gray');
+
+    //alert("YYYY/MM".match(/\w+|d+/g).join("-"))
     //下面用于注销
     $("#logOut").click(function () {
     	$.cookie("userName",null);

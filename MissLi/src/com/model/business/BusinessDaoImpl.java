@@ -16,12 +16,13 @@ public class BusinessDaoImpl implements BusinessDao{
 		// TODO Auto-generated method stub
 		if(bs==null)
 			return 0;
-		String sql="insert into business(businessName,userName,start) values(?,?,?)";
+		String sql="insert into business(businessName,userName,start,introduce) values(?,?,?,?)";
 		System.out.println(sql);
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(bs.getBusinessName());
 		paramList.add(bs.getUserName());
 		paramList.add(StrUtil.getTime());
+		paramList.add(bs.getIntroduce());
 		//paramList.add(user.getEmail());
 		//System.out.print(paramList.toString());
 		int result=0;
@@ -155,6 +156,9 @@ public class BusinessDaoImpl implements BusinessDao{
 				}
 				if(businessEntry.getKey().equals("start")){
 					business.setStart(businessEntry.getValue());
+				}
+				if(businessEntry.getKey().equals("introduce")){
+					business.setIntroduce(businessEntry.getValue());
 				}
 			}
 			

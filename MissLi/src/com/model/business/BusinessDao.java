@@ -5,7 +5,7 @@ import java.util.List;
 import com.model.user.User;
 
 public interface BusinessDao {
-	int add(Business us); //添加事务
+	int add(Business bs); //添加事务
 	int del(String businessName,String start);//通过事务名，开始日期删除事务
 	int rename(String oldName,String newName);//修改事务名
 	List<Business> getByUser(String userName);  //通过用户名获取事务

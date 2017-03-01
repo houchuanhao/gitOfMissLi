@@ -128,6 +128,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 			Cookie cookie=new Cookie("userName", userName);
 			response.addCookie(cookie);
 			servletRequest.getSession().setAttribute("userName", userName);
+			servletRequest.getSession().setAttribute("user", loginUser);
 			jStr.put("loginSuccess", true);
 		}
 		try {

@@ -212,160 +212,212 @@
             //q.append(s);
         }
     </script>
+    <script type="text/javascript" src="jedate/jedate.js"></script>
 </head>
 <body>
-<!---------下面是导航栏---->
 <div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <!--上面是导航栏---->
-
-            <!-----下面是内联框架---
-            <iframe id="Iframe1" src="login.jsp" name="mainIframe">
-
-            </iframe>
-            ---->
-            <div id="Iframe1">
-            </br></br></br></br>
-            		<center><h1>添加事务</h1></center>
-            	<form role="form" action="business.action" method="get">
-					<div class="form-group">
-						 <label for="exampleInputEmail1">事务名</label>
-						 <input type="text" class="form-control" id="exampleInputEmail1" name="businessName" />
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
 					</div>
-					<div class="form-group">
-						 <label for="exampleInputPassword1">说明</label>
-						 <textarea rows="5"  name="introduce" class="form-control" id="text"></textarea>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
 					</div>
-					 <input type="submit" class="btn-default btn btn-success btn-block" value="添加"/>
-				</form>
-       		</div>
-            <!--------上面是内联框架-------->
-        </div>
-    </div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-default btn-block btn-primary navbar-fixed-bottom" id="bottomButton">返回</button>
+			
+		</div>
+	</div>
 </div>
-<!-------------下面是遮罩窗体--->
-<div class="modal fade" id="signUp" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel1">
-                    注册
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label >用户名</label><input type="text" class="form-control" id="signUserName" />
-                    </div>
-                    <div class="form-group">
-                        <label >密码</label><input type="password" class="form-control" id="signPassword" />
-                    </div>
-                    <div class="form-group">
-                        <label >邮箱</label><input type="text" class="form-control" id="signEmail" />
-                    </div>
-                    <p type="submit" class="btn-default btn btn-success btn-block"   onclick="signup()">注册</p>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="login" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">
-                    登陆
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label >用户名</label><input type="text" class="form-control" id="logUserName" />
-                    </div>
-                    <div class="form-group">
-                        <label >密码</label><input type="password" class="form-control" id="logPassword" />
-                    </div>
-                    <div class="form-group">
-                        <p  class="btn btn-default btn-success btn-block" onclick="login()">登陆</p>
-                    </div>
-                    <div class="form-group">
+</body>
 
-                        <div class="row clearfix">
-                            <div class="col-md-6 column">
-                                <a href="#forget" data-toggle="modal" data-dismiss="modal"><button class="btn btn-default btn-block btn-info">忘记密码</button></a>
-                            </div>
-                            <div class="col-md-6 column">
-                                <a href="#signUp" data-toggle="modal" data-dismiss="modal"><button class="btn btn-default btn-block btn-info">前去注册</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="forget" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" >
-                    忘记密码
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label >注册邮箱</label><input type="email" class="form-control" id="forgetEmail" />
-                    </div>
-                    <p type="submit" class="btn btn-default btn-success btn-block" onclick="forget()">找回密码</p>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--下面是登陆成功-->
-<div class="modal fade" id="concel" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <h1>确定要注销登陆吗?</h1>
-                <p class="btn btn-default btn-block btn-info" id="logOut">注销</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" >
-    //下面用于注销
-    $("#logOut").click(function () {
-    	$.cookie("userName",null);
-        AV.User.logOut();
-        // 现在的 currentUser 是 null 了
-        $("#concel").modal('hide');
-        window.location.href='index.jsp';
-        //changeState();
-        location.reload();
-        // alert("注销成功");
-    });
+<script>
     var h=document.documentElement.clientHeight;
+   // alert(h);
+    var buttonHeight=h/3;
+    $("#bottomButton").height(h/4);
    // alert(h);
     var myframe=$("#Iframe1");
     var mynav=$("#nav1");
@@ -373,7 +425,5 @@
     myframe.height(h-mynav.innerHeight()-5);
     //alert(mynav.innerHeight());
     myframe.css("margin-top",mynav.innerHeight());
-    //myframe.marginTop($("#nav1").height());
 </script>
-</body>
 </html>

@@ -5,6 +5,7 @@ public class Business {
 	private String userName;
 	private String businessName;
 	private String start; //开始日期
+	private String introduce;
 	
 	
 	
@@ -28,7 +29,12 @@ public class Business {
 	
 	
 	
-	
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 	//----下面是getter和setter
 	public String getId() {
 		return id;

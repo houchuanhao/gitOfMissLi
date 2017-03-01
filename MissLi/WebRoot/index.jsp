@@ -93,12 +93,6 @@
                 $("#loginDom").remove();
                 par_a.remove();
                 par_li.attr("class","dropdown");
-                if(userName=="houchuanhao"){  //是管理员
-                    var child1=$("<li> <a href='addModular.html' target='mainIframe'>增加模块</a> </li>");
-                    var child2=$("<li> <a href='updateModular.jsp' target='mainIframe'>编辑模块</a> </li>");
-                    $("#nav").append(child1);
-                    $("#nav").append(child2);
-                }
 /*
                 var li_a=$("<a></a>");
                 //"dropdown-toggle" data-toggle="dropdown"
@@ -221,7 +215,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="nav">
                         <li >
-                            <a href="frame0.jsp" target="mainIframe">提醒</a>
+                            <a href="f0_myBusiness.jsp" target="mainIframe">提醒</a>
                         </li>
                         <li>
                             <a href="buyModular.jsp" target="mainIframe">事务</a>
@@ -247,7 +241,7 @@
             <!--上面是导航栏---->
 
             <!-----下面是内联框架------->
-            <iframe id="Iframe1" src="login.jsp" name="mainIframe">
+            <iframe id="Iframe1" src="frame0.jsp" name="mainIframe">
 
             </iframe>
             <!--------上面是内联框架-------->
@@ -367,7 +361,6 @@
     //下面用于注销
     $("#logOut").click(function () {
     	$.cookie("userName",null);
-        AV.User.logOut();
         // 现在的 currentUser 是 null 了
         $("#concel").modal('hide');
         window.location.href='index.jsp';
