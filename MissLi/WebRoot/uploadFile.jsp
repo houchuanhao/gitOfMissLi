@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
   
-  <s:form action="uploadFile" method="post" >
+  <s:form action="uploadFile" method="post"  enctype="multipart/form-data">
 	  <s:file name="file" label="选择文件"/>
 	  <s:submit value="上传"/>
   </s:form>

@@ -248,6 +248,8 @@ public void send(String email,String subject,String content){
 	sendmail.setFrom("congeler@163.com");// 发送者
 	sendmail.setSubject(subject );
 	sendmail.setContent(content);
+	String str="螳螂是昆虫中体型偏大的，体长一般55到105毫米，非洲的螳螂是世界最大的，身体流线型，以绿色，褐色为主，也具有花斑的种类；标志性特征是有两把“大刀”，即前肢，上有一排坚硬的锯齿，大刀钩末端有长有攀爬的吸盘。头部呈扇形，较小；复眼突出，大而透亮以黄绿色为主，晚上在灯光下呈现黑色，单眼，在两眼之间有3个小点即单眼；触角细长；颈部可180度转动；咀嚼式口器，上颚强劲。前足腿节和胫节有利刺，胫节镰刀状，常向腿节折叠，形成可以捕捉猎物的前足；前翅轻柔，遮住身体全部为覆翅，后翅比前翅要薄，边缘透明色，中间成放射状的紫红色、伸展开呈现扇状，休息时收敛和前翅相合；腹部肥大。前足锋利发达善于捕捉，中、后足适于步行，但有时前足也会用来保持平衡，发育呈变态发育。";
+	System.out.println(email+subject+"-------"+content+str);
 	// sendmail.attachfile("D:\\config.ini");
 	sendmail.sendMail();
 	

@@ -10,7 +10,7 @@ public interface BusinessDao {
 	int rename(String oldName,String newName);//修改事务名
 	List<Business> getByUser(String userName);  //通过用户名获取事务
 	List<Business> getByBName(String businessname); //通过事务名获取事务
-	
+	List<Business> getByBId(int id);
 	/*
 	int save(User user) throws Exception;
 	List<User> findall() throws Exception;  //获取所有用户

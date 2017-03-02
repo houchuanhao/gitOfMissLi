@@ -62,7 +62,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 	//3
 	public String logout(){
 		servletRequest.getSession().setAttribute("user", null);
-		
+		servletRequest.getSession().setAttribute("userName", null);
 		return SUCCESS;
 	}
 	//4   用于获取所以得用户

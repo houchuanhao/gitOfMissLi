@@ -39,7 +39,7 @@
             width: 100%;
         }
         iframe{
-            background-color: #2d2d2d;;
+       
             border: 0px;
             scrolling:no;
             width: 100%;
@@ -93,21 +93,10 @@
                 $("#loginDom").remove();
                 par_a.remove();
                 par_li.attr("class","dropdown");
-/*
-                var li_a=$("<a></a>");
-                //"dropdown-toggle" data-toggle="dropdown"
-                li_a.attr("class","dropdown-toggle");
-                li_a.attr("data-toggle","dropdown");
-                li_a.html(username);
-                par_li.append(li_a);
-*///<a href="frame3.jsp" target="mainIframe" id="myDiy">我的diy</a>
                 var li_a=$("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>"+userName+"&nbsp;&nbsp;&nbsp;<strong class='caret'></strong></a>");
                 var li_ul=$("<ul class='dropdown-menu'> <li> <a href='frame3.jsp' target='mainIframe' id='myDiy'>我的DIY</a> </li> <li> <a href='#shop' data-toggle='modal' >我的购物车</a> </li>     <li class='divider'> </li> <li> <a href='#concel' data-toggle='modal'>注销</a> </li> </ul>");
                 par_li.append(li_a);
                 par_li.append(li_ul);
-               // par_a.html(username);
-                // par_a.attr("href","#");
-                //修改mydiy的连接，给它加上用户名
                 $("#myDiy").attr("href","frame3.jsp?UserName="+userName);
             }
             else{  //登出
@@ -161,13 +150,14 @@
             			alert("用户名密码错误");
             		}else
             		{
-            			$.cookie("userName",username);
-            			alert("登录成功");
+            			alert("登录成功"+username);
+            			//location.reload([true]);  //false是从客户端缓存取页面，true则以get方式从服务器取页面
+            			window.location.href="index.jsp"; 
             		}
-
+            		
             }
             })
-            changeState();
+          //  changeState();
          /*   
             AV.User.logIn(username, password).then(function (loginedUser) {
                 //登陆成功
@@ -218,7 +208,7 @@
                             <a href="f0_myBusiness.jsp" target="mainIframe">提醒</a>
                         </li>
                         <li>
-                            <a href="buyModular.jsp" target="mainIframe">事务</a>
+                            <a href="business_getMyBusiness" target="mainIframe">事务</a>
                         </li>
                         <li>
                             <a href="frame2.html" target="mainIframe">个人信息</a>
@@ -230,11 +220,38 @@
                                 <button type="button" class="btn btn-default btn-success btn-block"> &nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp; </button>
                             </a>
                         </li>
+                        <!-- 未登录时 -->
+                        <% if(session.getAttribute("userName")==null||session.getAttribute("userName").equals(""))  //未登录
+                        	out.println("<li id='log'><a href='#login' data-toggle='modal' ><button  id='loginDom' type='button' class='btn btn-default btn-success btn-block'>&nbsp;&nbsp;&nbsp;登陆&nbsp;&nbsp;&nbsp;</button></a></li>");
+                        	else{  //登录状态下
+                        	
+                        	
+                        	
+                        	out.println("<li id='log' class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown'>"+session.getAttribute("userName")+"&nbsp;&nbsp;&nbsp;<strong class='caret'></strong></a><ul class='dropdown-menu'> <li> <a href='frame3.jsp' target='mainIframe' id='myDiy'>我的DIY</a> </li> <li> <a href='#shop' data-toggle='modal' >我的购物车</a> </li>     <li class='divider'> </li> <li> <a href='#concel' data-toggle='modal'>注销</a> </li> </ul></li>");
+                        	/*
+                        	
+                        	
+                var par_a = $("#loginDom").parent();//par1是链接到隐藏窗体的标签
+                var par_li=par_a.parent();  //par_li是<li>标签
+                $("#loginDom").remove();
+                par_a.remove();
+                par_li.attr("class","dropdown");
+                var li_a=$("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>"+userName+"&nbsp;&nbsp;&nbsp;<strong class='caret'></strong></a>");
+                var li_ul=$("<ul class='dropdown-menu'> <li> <a href='frame3.jsp' target='mainIframe' id='myDiy'>我的DIY</a> </li> <li> <a href='#shop' data-toggle='modal' >我的购物车</a> </li>     <li class='divider'> </li> <li> <a href='#concel' data-toggle='modal'>注销</a> </li> </ul>");
+                par_li.append(li_a);
+                par_li.append(li_ul);
+                $("#myDiy").attr("href","frame3.jsp?UserName="+userName);
+                        	
+                        	*/
+                        	}
+                         %>
+                         <!--  
                         <li id="log">
                             <a href="#login" data-toggle="modal" >
                                 <button  id="loginDom" type="button" class="btn btn-default btn-success btn-block">&nbsp;&nbsp;&nbsp;登陆&nbsp;&nbsp;&nbsp;</button>
                             </a>
                         </li>
+                        -->
                     </ul>
                 </div>
             </nav>
@@ -340,6 +357,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!--下面是登陆成功-->
 <div class="modal fade" id="concel" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -349,7 +369,7 @@
             </div>
             <div class="modal-body">
                 <h1>确定要注销登陆吗?</h1>
-                <p class="btn btn-default btn-block btn-info" id="logOut">注销</p>
+                <a href="user_logout"><p class="btn btn-default btn-block btn-info" id="logOut">注销</p></a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-block btn-info" data-dismiss="modal">关闭</button>
@@ -359,15 +379,6 @@
 </div>
 <script type="text/javascript" >
     //下面用于注销
-    $("#logOut").click(function () {
-    	$.cookie("userName",null);
-        // 现在的 currentUser 是 null 了
-        $("#concel").modal('hide');
-        window.location.href='index.jsp';
-        //changeState();
-        location.reload();
-        // alert("注销成功");
-    });
     var h=document.documentElement.clientHeight;
    // alert(h);
     var myframe=$("#Iframe1");

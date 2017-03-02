@@ -36,15 +36,27 @@ public class BusinessAction extends ActionSupport implements ServletRequestAware
 		}
 	}
 	public String getMyBusiness(){  //我的事务
-		String userName=(String)servletRequest.getSession().getAttribute("userName");
+		if(servletRequest.getSession().getAttribute("user")==null) //未登录
+		{
+			return "logIN"; //未登录
+		}
 		User user=(User)servletRequest.getSession().getAttribute("user");
 		List<Business> businessList=new ArrayList<Business>();
-		businessList=businessService.getByUser(userName);
+		businessList=businessService.getByUser(user.getUsername());
 		HttpServletRequest request =ServletActionContext.getRequest();
 		request.setAttribute("businessList", businessList);
-		return SUCCESS;
+		System.out.print(businessList+user.getUsername());
+		return "myBusiness";
 	}
-	
+	public String manage(){ //对单个事务进行管理
+		String id=(String)servletRequest.getAttribute("id");
+		List<Business> businessList=new ArrayList<Business>();
+		businessList=businessService.getByBId(id);
+		Business bs=businessList.get(0);
+		servletRequest.setAttribute("business", bs);
+		
+		return "manage";
+	}
 	
 	
 	

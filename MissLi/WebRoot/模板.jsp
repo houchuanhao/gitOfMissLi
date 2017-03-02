@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -39,83 +38,51 @@
         .w50{
             width: 100%;
         }
-        #Iframe1{
+        iframe{
+       
             border: 0px;
             scrolling:no;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #text{
-        width:100%
+            width: 100%;
         }
     </style>
-    <script type="text/javascript" src="jedate/jedate.js"></script>
+
+
 </head>
 <body>
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12 column">	
-			<s:iterator value="# request.businessList" status="status">
-			<s:if test="#status.first==true"><!-- 第一个 -->
-				<div class="row">
-			</s:if>
-				<div class="col-md-4">
-						<div class="thumbnail">
-						
-							<div class="caption">
-								<h3>
-									<s:property value="businessName" />
-								----时间<s:property value="start"/>
-								</h3>
-								<p>
-									<s:property value="introduce" />
-								</p>
-								<p>
-									<s:a href="business_manage.action?id=%{id}">管理</s:a>
-									 <a class="btn btn-primary" href="#">前往</a>
-								</p>
-							</div>
+		<div class="col-md-2 column">
+			<div class="panel-group" id="panel-510651">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-510651" href="#panel-element-429205">Collapsible Group Item #1</a>
+					</div>
+					<div id="panel-element-429205" class="panel-collapse collapse in">
+						<div class="panel-body">
+							Anim pariatur cliche...
 						</div>
 					</div>
-				<s:if test="#status.last==true"><!-- 最后一个 -->
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-510651" href="#panel-element-727566">Collapsible Group Item #2</a>
 					</div>
-				</s:if>
-				<s:else>
-					<s:if test="#status.modulus(3)==0"><!-- 取余3==0 -->	
-						<s:if test="#status.first==false">
+					<div id="panel-element-727566" class="panel-collapse collapse">
+						<div class="panel-body">
+							Anim pariatur cliche...
 						</div>
-						<div class="row">
-					</s:if>
-					</s:if>
-					
-				</s:else>
-			</s:iterator>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-</body>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 column">
+		</div>
+		<div class="col-md-4 column">
+		</div>
+	</div>
+</div>
 
-<script>
-    var h=document.documentElement.clientHeight;
-   // alert(h);
-    var buttonHeight=h/3;
-    $("#bottomButton").height(h/4);
-   // alert(h);
-    var myframe=$("#Iframe1");
-    var mynav=$("#nav1");
-    var fheigh=h-$("#nav1").outerHeight();//$("#nav1").css("marginBottom");
-    myframe.height(h-mynav.innerHeight()-5);
-    //alert(mynav.innerHeight());
-    myframe.css("margin-top",mynav.innerHeight());
-</script>
+
+<!---------下面是导航栏---->
+</body>
 </html>

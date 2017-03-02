@@ -90,11 +90,11 @@ public class BusinessDaoImpl implements BusinessDao{
 	}
 
 	@Override
-	public List<Business> getByUser(String businessName) {
+	public List<Business> getByUser(String userName) {
 		// TODO Auto-generated method stub
-		String sql="select * from business where businessname=?";
+		String sql="select * from business where userName=?";
 		List<Object>paramList=new ArrayList<Object>();
-		paramList.add(businessName);
+		paramList.add(userName);
 		List<Business> businessList=null;
 		try {
 			businessList = getBusinessList(sql,paramList);
@@ -134,11 +134,14 @@ public class BusinessDaoImpl implements BusinessDao{
 	
 	
 	private List<Business> getBusinessList(String sql,List<Object> paramList) throws Exception{
+		
+		
 		List<Business> businessList=new ArrayList<Business>();
 		List<Map<String,String>> businessMapList =DbUtil.getQueryList(sql, paramList);
 		if(businessMapList==null||businessMapList.isEmpty()){  //获取的用户数量为0
 			return null; //返回一个节点数为0的List<Business>类对象
 		}
+		
 		for(Map<String,String> businessMap:businessMapList){
 			Iterator<Entry<String,String>> businessEntryIt=businessMap.entrySet().iterator();
 			Business business=new Business();
@@ -167,6 +170,24 @@ public class BusinessDaoImpl implements BusinessDao{
 		
 		return businessList;
 		
+	}
+
+	@Override
+	public List<Business> getByBId(int id) {
+		String sql="select * from business where id=?";
+		List<Object>paramList=new ArrayList<Object>();
+		paramList.add(id);
+		List<Business> businessList=null;
+		try {
+			businessList = getBusinessList(sql,paramList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(businessList==null||businessList.isEmpty()){
+			return null;
+		}
+		return businessList;
 	}
 
 }
