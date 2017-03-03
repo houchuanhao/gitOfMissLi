@@ -22,7 +22,7 @@
 	 -->  
 	<property name="show_sql">true</property><!-- 是否后台打印语句 -->  
 	<mapping resource="com/model/file/File.hbm.xml"/><!--映射文件-->
-	<mapping resource="com/model/file/Warm.hbm.xml"/><!--映射文件-->
+	<mapping resource="com/model/warm/Warm.hbm.xml"/><!--映射文件-->
 </session-factory>
 
 </hibernate-configuration>

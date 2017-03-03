@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -48,66 +49,77 @@
         #text{
         width:100%
         }
+        .cwidth{
+        
+        }
+        .rig{
+			float:right;
+        }
     </style>
     <script type="text/javascript" src="jedate/jedate.js"></script>
 </head>
 <body>
-<!---------下面是导航栏---->
 <div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <!--上面是导航栏---->
-
-   
-            <div id="Iframe1">
-            </br></br></br></br>
-            		<center><h1>添加提醒</h1></center>
-            	<form role="form" action="warm_add" method="get">
-					<div class="form-group">
-						 <label for="exampleInputEmail1">名称</label>
-						 <input type="text" class="form-control" id="exampleInputEmail1" name="warmName" />
+	<div class="row clearfix">
+		<div class="col-md-12 column">	
+		
+		<div class="list-group">
+				 <a href="#" class="list-group-item active">我的提醒</a>
+				 <s:iterator value="# request.warmList" status="status">
+				<div class="list-group-item">
+					<s:property value="warmName" />
+					<div class="rig">333
 					</div>
-					<div class="form-group">
-						 <label for="exampleInputEmail1">提醒时间</label>
-						 <p class="datep">
-						 <input class="datainp form-control" name="begin" id="datebut" type="text" placeholder="未选择"  readonly onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD hh:MM:ss'})" />
-						 <br><br>
-						 <input type="button" 
-onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD hh:MM:ss'})" value="选择时间" class="btn-default btn btn-success btn-block" /></p>
+					<span class="badge">14</span> <span class="badge">14</span><span class="badge">14</span> <span class="badge">14</span>
+					即将于<s:property value="begin"/>开始 
+				</div>
+				</s:iterator>
+				<a class="list-group-item active"> <span class="badge">14</span> <span class="badge">14</span><span class="badge">14</span>Help</a>
+			</div>
+		
+		
+			<s:iterator value="# request.warmList" status="status">
+			<s:if test="#status.first==true"><!-- 第一个 -->
+				<div class="row">
+			</s:if>
+				<div class="col-md-4">
+						<div class="thumbnail">
+						
+							<div class="caption">
+								<h3>
+									<s:property value="businessName" />
+								----时间<s:property value="start"/>
+								</h3>
+								<p>
+									<s:property value="introduce" />
+								</p>
+								<p>
+									<s:a href="business_manage.action?id=%{id}">管理</s:a>
+									 <a class="btn btn-primary" href="#">前往</a>
+								</p>
+							</div>
+						</div>
 					</div>
-					<br><br>
-					<div class="form-group">
-						 <label for="exampleInputPassword1">说明</label>
-						 <textarea rows="5"  name="introduce" class="form-control" id="text"></textarea>
+				<s:if test="#status.last==true"><!-- 最后一个 -->
 					</div>
-					 <input type="submit" class="btn-default btn btn-success btn-block" value="添加"/>
-					 <br><br>
-					 <p class="btn-default btn btn-success btn-block">返回</p>
-				</form>
-       		</div>
-            <!--------上面是内联框架-------->
-        </div>
-    </div>
-</div>
-<!-------------下面是遮罩窗体--->
-<script type="text/javascript" >
+				</s:if>
+				<s:else>
+					<s:if test="#status.modulus(3)==0"><!-- 取余3==0 -->	
+						<s:if test="#status.first==false">
+						</div>
+						<div class="row">
+					</s:if>
+					</s:if>
+					
+				</s:else>
+			</s:iterator>		
+</body>
 
-//下面是时间插件
-    //jeDate.skin('gray');
-
-    //alert("YYYY/MM".match(/\w+|d+/g).join("-"))
-    //下面用于注销
-    $("#logOut").click(function () {
-    	$.cookie("userName",null);
-        AV.User.logOut();
-        // 现在的 currentUser 是 null 了
-        $("#concel").modal('hide');
-        window.location.href='index.jsp';
-        //changeState();
-        location.reload();
-        // alert("注销成功");
-    });
+<script>
     var h=document.documentElement.clientHeight;
+   // alert(h);
+    var buttonHeight=h/3;
+    $("#bottomButton").height(h/4);
    // alert(h);
     var myframe=$("#Iframe1");
     var mynav=$("#nav1");
@@ -115,7 +127,5 @@ onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD hh:MM:ss'})"
     myframe.height(h-mynav.innerHeight()-5);
     //alert(mynav.innerHeight());
     myframe.css("margin-top",mynav.innerHeight());
-    //myframe.marginTop($("#nav1").height());
 </script>
-</body>
 </html>

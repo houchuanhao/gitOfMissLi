@@ -4,14 +4,14 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
       
 <hibernate-mapping>  
-    <class name="com.model.file.Warm" table="warm"><!--这里的table值对应数据库中的表名；如果没有table值，默认等于类名小写 -->  
+    <class name="com.model.warm.Warm" table="warm"><!--这里的table值对应数据库中的表名；如果没有table值，默认等于类名小写 -->  
         <id name="id" column="id" type="java.lang.Integer">  
             <generator class="native"></generator><!--采用主键自增长方式-->  
         </id>  
       
         <property name="businessId" column="businessId" type="java.lang.Integer"/>
         <property name="userId" column="userId" type="java.lang.Integer"/>
-        <property name="create" column="create" type="java.util.Date"/><!-- 这里的column值对应数据库中的属性名；如果没有column值，默认等于属性名 -->  
+        <property name="build" column="build" type="java.util.Date"/><!-- 这里的column值对应数据库中的属性名；如果没有column值，默认等于属性名 -->  
         <property name="begin" column="begin" type="java.util.Date"/>  
         <property name="warmName" column="warmName" type="java.lang.String"/>     
         <property name="introduce" column="introduce" type="java.lang.String"/>   

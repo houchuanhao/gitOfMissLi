@@ -1,11 +1,13 @@
 package com.model.warm;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.model.user.User;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class WarmAction extends ActionSupport implements ServletRequestAware{
@@ -26,16 +28,54 @@ public class WarmAction extends ActionSupport implements ServletRequestAware{
 
 
 
-	public void add(){ //ÃÌº”Ã·–—
+	public String add(){ //ÃÌº”Ã·–—
 		Warm warm=new Warm();
 		userId=servletRequest.getParameter("userId");
 		businessId=servletRequest.getParameter("businessId");
+		if(businessId==null){
+			businessId="99999";
+		}
 		
+		User user=(User) servletRequest.getSession().getAttribute("user");
+		System.out.print(begin);
+		warm.setBegin(begin);
+		warm.setIntroduce(introduce);
+		warm.setUserId(Integer.parseInt(user.getId()));
+		warm.setBusinessId(Integer.parseInt(businessId));
+		warm.setWarmName(warmName);
+		warmService.add(warm);
+		return SUCCESS;  //ÃÌº”
+		
+	}
+	public String myWarm(){
+		User user=(User) servletRequest.getSession().getAttribute("user");
+		if(user==null){
+			return "login"; //Œ¥‘¯µ«¬º
+		}
+		String id=user.getId();
+		List<Warm> warmList=warmService.getByUId(user.getId());
+		servletRequest.setAttribute("warmList", warmList);
+		return "myWarm";
 	}
 	
 	
 	
 	
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
 	
 	public HttpServletRequest getServletRequest() {
 		return servletRequest;

@@ -156,9 +156,17 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="nav">
-                        <li >
-                            <a href="addWarm.jsp" target="mainIframe">提醒</a>
-                        </li>
+                       <li  class='dropdown'><a href='#' class='dropdown-toggle' data-toggle="dropdown">提醒<span class="badge">14</span>
+	                       <strong class='caret'>
+	                       </strong></a>
+	                       <ul class='dropdown-menu'> 
+		                       <li> <a href="warm_myWarm" target="mainIframe" id='myDiy'>我的提醒</a> </li> 
+		                       <li> <a href="addWarm.jsp"  target="mainIframe"   >添加提醒</a> </li>     
+		                       <li class='divider'> 
+		                       </li> 
+	                       </ul>
+                       </li>
+                        	
                         <li>
                             <a href="business_getMyBusiness" target="mainIframe">事务</a>
                         </li>
