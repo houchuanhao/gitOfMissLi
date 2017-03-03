@@ -1,5 +1,6 @@
 package com;
 
 public class Configuration {
-	public static String address="localhost:8080";
+
+	public static String address="localhost:3306";
 }

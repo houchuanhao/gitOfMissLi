@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+<hibernate-mapping>  
+    <class name="com.model.file.File" table="file"><!--这里的table值对应数据库中的表名；如果没有table值，默认等于类名小写 -->  
+        <id name="id" column="id" type="java.lang.Integer">  
+            <generator class="native"></generator><!--采用主键自增长方式-->  
+        </id>  
+        <property name="fileName" column="fileName" type="java.lang.String"/><!-- 这里的column值对应数据库中的属性名；如果没有column值，默认等于属性名 -->  
+        <property name="uploadDate" column="uploadDate" type="java.util.Date"/>  
+        <property name="userId" column="userId" type="java.lang.Integer"/>  
+        <property name="businessId" column="businessId" type="java.lang.Integer"/>   
+    </class>   
+</hibernate-mapping>  

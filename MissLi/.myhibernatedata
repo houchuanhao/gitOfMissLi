@@ -1,10 +1,11 @@
 #MyEclipse Hibernate Properties
-#Tue Feb 28 04:19:58 CST 2017
+#Thu Mar 02 23:30:51 CST 2017
 genVersionTag=false
+sessionFactoryName=hibernate.HibernateSessionFactory
 genAnnotations=false
-configFile=/MissLi/src/applicationContext.xml
+configFile=/MissLi/src/hibernate.cfg.xml
 reStrategyClass=
-sessionFactoryId=sessionFactory
+sessionFactoryId=
 profile=
 detectM2M=false
 genBasicCompId=false

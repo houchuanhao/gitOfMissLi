@@ -1,43 +1,45 @@
 package com.model.file;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class File {
 	private String fileName;
-	private String id;
-	private Date date;
-	private String businessId;
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private int id;
+	private Date uploadDate;
+	private int businessId;
+	private int userId;
 	public String getFileName() {
 		return fileName;
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getDate() {
-		return date;
+	public Date getUploadDate() {
+		return uploadDate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
 	}
-	public String getBusinessId() {
+	public int getBusinessId() {
 		return businessId;
 	}
-	public void setBusinessId(String businessId) {
+	public void setBusinessId(int businessId) {
 		this.businessId = businessId;
 	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
+	
+	
+
 }
