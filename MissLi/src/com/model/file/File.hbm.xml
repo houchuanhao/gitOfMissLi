@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
       
 <hibernate-mapping>  
-    <class name="com.model.file.File" table="file"><!--这里的table值对应数据库中的表名；如果没有table值，默认等于类名小写 -->  
+    <class name="com.model.file.MyFile" table="file"><!--这里的table值对应数据库中的表名；如果没有table值，默认等于类名小写 -->  
         <id name="id" column="id" type="java.lang.Integer">  
             <generator class="native"></generator><!--采用主键自增长方式-->  
         </id>  

@@ -1,7 +1,10 @@
 package com.model.file;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.text.SimpleDateFormat;
 import java.io.File;
@@ -14,7 +17,11 @@ import java.text.SimpleDateFormat;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.model.user.User;
+import com.model.user.UserService;
+import com.model.user.UserServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
 /*
 public class UploadFileAction extends ActionSupport{
@@ -59,8 +66,10 @@ public class UploadFileAction extends ActionSupport{
 }
 */
 
-public class FileAction extends ActionSupport
+public class FileAction extends ActionSupport implements ServletRequestAware
 {
+	private MyFile myFile;
+	
     private String username;
     
     //注意，file并不是指前端jsp上传过来的文件本身，而是文件上传过来存放在临时文件夹下面的文件
@@ -69,9 +78,23 @@ public class FileAction extends ActionSupport
     //提交过来的file的名字
     private String fileFileName;
     
-    //提交过来的file的MIME类型
+    public HttpServletRequest getServletRequest() {
+		return servletRequest;
+	}
+	public void setServletRequest(HttpServletRequest servletRequest) {
+		this.servletRequest = servletRequest;
+	}
+
+	//提交过来的file的MIME类型
     private String fileContentType;
 
+	private static FileService fileService=new FileServiceImpl();
+	
+	protected HttpServletRequest servletRequest=null;
+	
+    public void FileAction(){
+    	myFile=new MyFile();
+    }
     public String getUsername()
     {
         return username;
@@ -112,34 +135,37 @@ public class FileAction extends ActionSupport
         this.fileContentType = fileContentType;
     }
     
-    public String execute() throws Exception
+    public String upload() throws Exception  //先调用service保存到数据库,再保存到本地
     {
-    	HttpServletRequest request=ServletActionContext.getRequest();
-    	username=(String) request.getSession().getAttribute("userName");
-        String root = ServletActionContext.getServletContext().getRealPath("/upload");
-        
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
-        InputStream is = new FileInputStream(file);
-        
-        OutputStream os = new FileOutputStream(new File(root, fileFileName));	
-        
-        System.out.println("fileFileName: " + fileFileName);
-        // 因为file是存放在临时文件夹的文件，我们可以将其文件名和文件路径打印出来，看和之前的fileFileName是否相同
+    	
+    	HttpSession session=servletRequest.getSession();
+    	User user=(User) session.getAttribute("user");
+    	int businessId=Integer.parseInt(servletRequest.getParameter("id"));
+    	
+    	String root = ServletActionContext.getServletContext().getRealPath("/upload");
+    	MyFile myFile =new MyFile();
+    	myFile.setUserId(user.getId());
+    	myFile.setBusinessId(businessId);
+    	myFile.setFileName(fileFileName);
+    	myFile.setUploadFile(file);
+    	myFile.setRoot(root);
+    	fileService.save(myFile);
         System.out.println("file: " + file.getName());
-        System.out.println("file: " + file.getPath());
-        
-        byte[] buffer = new byte[500];
-        int length = 0;
-        
-        while(-1 != (length = is.read(buffer, 0, buffer.length)))
-        {
-            os.write(buffer);
-        }
-        
-        os.close();
-        is.close();
-        
+       // System.out.println("file: " + file.getPath());
         return SUCCESS;
+    }
+
+    public String download(){
+    	int  businessId=Integer.parseInt(servletRequest.getParameter("id"));
+    	HttpServletRequest request =ServletActionContext.getRequest();
+    	List<Object> fileList=new ArrayList<Object>();
+    	fileList=fileService.getFileByBId(String.valueOf(businessId));
+    	/*
+    	for(int i=0;i<fileList.size();i++){
+    		System.out.println(fileList.get(i).getFileName());
+    	}
+    	request.setAttribute("fileList", fileList);
+    	*/
+    	return "download";
     }
 }

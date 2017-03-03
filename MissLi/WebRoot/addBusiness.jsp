@@ -61,33 +61,7 @@
             appId: APP_ID,
             appKey: APP_KEY
         });
-        /*
-         <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-         <ul class="dropdown-menu">
-         <li>
-         <a href="#">Action</a>
-         </li>
-         <li>
-         <a href="#">Another action</a>
-         </li>
-         <li>
-         <a href="#">Something else here</a>
-         </li>
-         <li class="divider">
-         </li>
-         <li>
-         <a href="#">Separated link</a>
-         </li>
-         <li class="divider">
-         </li>
-         <li>
-         <a href="#">One more separated link</a>
-         </li>
-         </ul>
-         </li>
-         *///li
-              // a ul
+
         function changeState(){ //更改状态 登陆/登出
         	var userName=null;
             userName = $.cookie("userName");

@@ -57,33 +57,6 @@
             appId: APP_ID,
             appKey: APP_KEY
         });
-        /*
-         <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-         <ul class="dropdown-menu">
-         <li>
-         <a href="#">Action</a>
-         </li>
-         <li>
-         <a href="#">Another action</a>
-         </li>
-         <li>
-         <a href="#">Something else here</a>
-         </li>
-         <li class="divider">
-         </li>
-         <li>
-         <a href="#">Separated link</a>
-         </li>
-         <li class="divider">
-         </li>
-         <li>
-         <a href="#">One more separated link</a>
-         </li>
-         </ul>
-         </li>
-         *///li
-              // a ul
         function changeState(){ //更改状态 登陆/登出
         	var userName=null;
             userName = $.cookie("userName");
@@ -157,28 +130,7 @@
             		
             }
             })
-          //  changeState();
-         /*   
-            AV.User.logIn(username, password).then(function (loginedUser) {
-                //登陆成功
-                if(!loginedUser._serverData.emailVerified){ //登陆失败，未注册
-                    alert("登陆失败，用户已注册，但邮箱未验证");
-                    AV.User.logOut();
-                    return;
-                }
-                $("#logSuccess").modal('show');
-                $("#login").modal('hide');
-                changeState();
-                // setTimeout(function(){$("#logSuccess").modal('hide');$("#login").modal('hide');},500);
-                //console.log(loginedUser);
-                console.log(loginedUser._serverData.emailVerified);
-               // AV.User.logOut()
-                console.log(AV.User.current());
-            }, function (error) {
-                alert("登陆失败"+error.message);
-            });
-            */
-            // $("#login").modal('hide');
+
         }
         function Alert(str) {
             var out=$("<div class='modal fade'  role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'> <div class='modal-content'> <div class='modal-header'> <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button> <h4 class='modal-title' id='myModalLabel'>消息 </h4> </div> <div class='modal-body'>"+str+"</div><div class='modal-footer'><button type='button' class='btn btn-default btn-block' data-dismiss='modal'>关闭</button></div></div></div></div>")

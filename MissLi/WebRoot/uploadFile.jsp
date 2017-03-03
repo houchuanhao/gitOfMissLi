@@ -24,12 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <%
+ String id=(String)request.getParameter("id");
+   %>
   
-  
-  　　<form action="uploadFile" method="post" enctype="multipart/form-data">
-    　　
-        username: <input type="text" name="username"><br>
-        file: <input type="file" name="file"><br>
+  　　<form action="uploadFile_upload<% out.print("?id="+id); %>" method="post" enctype="multipart/form-data">
+        <input type="file" name="file"><br>
         
         <input type="submit" value="submit">
     </form>
@@ -38,19 +38,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
   
-  
-  
-  
-  
-  
-  <s:form action="uploadFile" method="post"  enctype="multipart/form-data">
-	  <s:file name="file" label="选择文件"/>
-	  <s:submit value="上传"/>
-  </s:form>
-  <s:if test="upload!=null">
-  	<s:property value="uploadFileName"/> 
-  	<s:property value="uploadContentType"/> 
-  </s:if>
-    This is my JSP page. <br>
   </body>
 </html>

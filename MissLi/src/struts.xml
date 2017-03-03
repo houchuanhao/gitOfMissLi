@@ -29,8 +29,9 @@
 		<result>/index.jsp</result>
 		
 	</action>
-	<action name="uploadFile" class="com.model.file.FileAction">
+	<action name="uploadFile_*" method="{1}" class="com.model.file.FileAction"	>
 		<result>/uploadFile.jsp</result>
+		<result name="download">/downloadFile.jsp</result>
 	</action>
 	</package>
 	<!-- Add packages here -->

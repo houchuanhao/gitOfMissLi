@@ -185,6 +185,10 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		response.getWriter().write(jstr.toStr());
 		return null;
 	}
+	
+	
+	
+	
 	@Override
 	public void setServletRequest(HttpServletRequest request){
 		this.servletRequest=request;

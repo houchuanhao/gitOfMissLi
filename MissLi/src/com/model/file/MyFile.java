@@ -1,13 +1,38 @@
 package com.model.file;
 
+import java.io.File;
 import java.util.Date;
 
-public class File {
-	private String fileName;
+public class MyFile {
 	private int id;
+	private String fileName;  //1
+	private int businessId;   //2
+	private int userId;       //3
 	private Date uploadDate;
-	private int businessId;
-	private int userId;
+	private File uploadFile;
+	private String root;
+	public void MyFile(){
+		uploadDate=new Date();
+	}
+	
+	
+	
+	
+	
+	
+	
+	public File getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(File uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public String getRoot() {
+		return root;
+	}
+	public void setRoot(String root) {
+		this.root = root;
+	}
 	public String getFileName() {
 		return fileName;
 	}
@@ -38,8 +63,8 @@ public class File {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
-	
-	
-
+	public void setUserId(String userId){
+		int uid=Integer.parseInt(userId);
+		id=uid;
+	}
 }

@@ -14,7 +14,12 @@
 		jdbc:mysql://localhost:3306/mydata
 	</property>
 	<property name="connection.password"></property>
-	<property name="hbm2ddl.auto">create</property><!-- 更新数据库方式 -->  
+	<property name="hbm2ddl.auto">update</property><!-- 更新数据库方式,参数有四种，分别是
+	create-drop,初始化时创建表，结束时删除表
+	create,初始化时创建表，结束时不删除
+	update,只是根据映射文件去和数据库中的表对应起来，如果不一致，就更新表的结构
+	validate,校验映射文件和数据库中的表是不是能对应起来，不能对应报错，实际中常用	
+	 -->  
 	<property name="show_sql">true</property><!-- 是否后台打印语句 -->  
 	<mapping resource="com/model/file/File.hbm.xml"/><!--映射文件-->
 </session-factory>

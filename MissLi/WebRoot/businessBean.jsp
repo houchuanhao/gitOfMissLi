@@ -68,7 +68,9 @@
 							 %>
 						</div>
 						<div class="panel-body">
-							文件下载/删除
+							<%
+							out.println("<a href='uploadFile_download?id="+bs.getId()+"'> 文件下载/删除</a>");
+							 %>
 						</div>
 					</div>
 				</div>
