@@ -7,7 +7,7 @@ import com.model.user.User;
 
 public interface FileDao {
 	int save(MyFile file);   //添加文件
-	List<Object> getByBId(int id);  //事务的所有文件
+	List<MyFile> getByBId(int id);  //事务的所有文件
 	List<MyFile> getByUId(int id); //用户的所有文件
 	int del(MyFile file); //删除某个文件
 	int save(MyFile file,String fileName,int businessId,int userId);

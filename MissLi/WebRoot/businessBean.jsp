@@ -41,7 +41,7 @@
             width: 100%;
         }
         iframe{
-       
+       		//height:100%;
             border: 0px;
             scrolling:no;
             width: 100%;
@@ -69,7 +69,7 @@
 						</div>
 						<div class="panel-body">
 							<%
-							out.println("<a href='uploadFile_download?id="+bs.getId()+"'> 文件下载/删除</a>");
+							out.println("<a href='uploadFile_download?id="+bs.getId()+"' target='iframe'> 文件下载/删除</a>");
 							 %>
 						</div>
 					</div>
@@ -135,12 +135,20 @@
 	</div>
 </div>
 <script>
+/*
  	var h=document.documentElement.clientHeight;
-    alert(h);
+   // alert(h);
     var myframe=$("#iframe");
     var leftHeight=$("#list").outerHeight();
     var fheigh=h-$("#nav1").outerHeight();//$("#nav1").css("marginBottom");
     myframe.height(leftHeight);
+    */
+     var h=document.documentElement.clientHeight;
+   // alert(h);
+    var myframe=$("#iframe");
+    var leftHeight=$("#list").outerHeight();
+    var fheigh=h-$("#nav1").outerHeight();//$("#nav1").css("marginBottom");
+    myframe.height(h-5);
     //alert(mynav.innerHeight());
     //myframe.css("margin-top",mynav.innerHeight());
 </script>

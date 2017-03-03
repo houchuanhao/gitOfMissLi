@@ -33,6 +33,9 @@
 		<result>/uploadFile.jsp</result>
 		<result name="download">/downloadFile.jsp</result>
 	</action>
+	<action name="warm_*" method="{1}" class="com.model.warm.WarmAction">
+		<result >/index.jsp</result>
+	</action>
 	</package>
 	<!-- Add packages here -->
 </struts>

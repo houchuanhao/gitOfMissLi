@@ -11,7 +11,7 @@ public interface FileService {
 	public int getByFName(String fileName);
 	public String save(MyFile myFile) throws FileNotFoundException, IOException;
 	public List<MyFile> getFileByUId(String uId);
-	public List<Object> getFileByBId(String bId);
+	public List<MyFile> getFileByBId(String bId);
 	public void delete(int fileId);
 	public void delete(MyFile myFile );
 	public MyFile getById(int id);

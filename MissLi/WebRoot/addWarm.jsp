@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -53,59 +52,66 @@
     <script type="text/javascript" src="jedate/jedate.js"></script>
 </head>
 <body>
+<!---------下面是导航栏---->
 <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">	
-			<s:iterator value="# request.fileList" status="status">
-			<s:if test="#status.first==true"><!-- 第一个 -->
-				<div class="row">
-			</s:if>
-				<div class="col-md-4">
-						<div class="thumbnail">
-						
-							<div class="caption">
-								
-									<s:property value="fileName" />
-								----时间<s:property value="uploadDate"/>
-								<p>
-									<s:a href="upload/%{fileName}">下载</s:a>&nbsp;&nbsp;&nbsp;&nbsp;
-									 <s:a cssClass="btn btn-primary" href="uploadFile_del?id=%{# parameters.id}&&fId=%{id}">删除</s:a>
-								</p>
-							</div>
-						</div>
-					</div>
-				<s:if test="#status.last==true"><!-- 最后一个 -->
-					</div>
-				</s:if>
-				<s:else>
-					<s:if test="#status.modulus(3)==0"><!-- 取余3==0 -->	
-						<s:if test="#status.first==false">
-						</div>
-						<div class="row">
-					</s:if>
-					</s:if>
-					
-				</s:else>
-			</s:iterator>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-</body>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--上面是导航栏---->
 
-<script>
+            <!-----下面是内联框架---
+            <iframe id="Iframe1" src="login.jsp" name="mainIframe">
+
+            </iframe>
+            ---->
+            <div id="Iframe1">
+            </br></br></br></br>
+            		<center><h1>添加提醒</h1></center>
+            	<form role="form" action="business.action" method="get">
+					<div class="form-group">
+						 <label for="exampleInputEmail1">名称</label>
+						 <input type="text" class="form-control" id="exampleInputEmail1" name="businessName" />
+					</div>
+					<div class="form-group">
+						 <label for="exampleInputEmail1">提醒时间</label>
+						 <p class="datep">
+						 <input class="datainp form-control" id="datebut" type="text" placeholder="未选择"  readonly>
+						 <br><br>
+						 <input type="button" 
+onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD HH:MM:SS'})" value="选择时间" class="btn-default btn btn-success btn-block"></p>
+					</div>
+					<br><br>
+					<div class="form-group">
+						 <label for="exampleInputPassword1">说明</label>
+						 <textarea rows="5"  name="introduce" class="form-control" id="text"></textarea>
+					</div>
+					 <input type="submit" class="btn-default btn btn-success btn-block" value="添加"/>
+					 <br><br>
+					 <p class="btn-default btn btn-success btn-block">返回</p>
+				</form>
+       		</div>
+            <!--------上面是内联框架-------->
+        </div>
+    </div>
+</div>
+<!-------------下面是遮罩窗体--->
+<script type="text/javascript" >
+
+//下面是时间插件
+    //jeDate.skin('gray');
+
+    //alert("YYYY/MM".match(/\w+|d+/g).join("-"))
+    //下面用于注销
+    $("#logOut").click(function () {
+    	$.cookie("userName",null);
+        AV.User.logOut();
+        // 现在的 currentUser 是 null 了
+        $("#concel").modal('hide');
+        window.location.href='index.jsp';
+        //changeState();
+        location.reload();
+        // alert("注销成功");
+    });
     var h=document.documentElement.clientHeight;
-   // alert(h);
-    var buttonHeight=h/3;
-    $("#bottomButton").height(h/4);
    // alert(h);
     var myframe=$("#Iframe1");
     var mynav=$("#nav1");
@@ -113,5 +119,7 @@
     myframe.height(h-mynav.innerHeight()-5);
     //alert(mynav.innerHeight());
     myframe.css("margin-top",mynav.innerHeight());
+    //myframe.marginTop($("#nav1").height());
 </script>
+</body>
 </html>

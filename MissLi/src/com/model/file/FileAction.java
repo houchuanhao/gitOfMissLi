@@ -154,18 +154,38 @@ public class FileAction extends ActionSupport implements ServletRequestAware
        // System.out.println("file: " + file.getPath());
         return SUCCESS;
     }
-
-    public String download(){
+    public String del(){
+    	int fId=Integer.parseInt(servletRequest.getParameter("fId"));
+    	MyFile myFile =new MyFile();
+    	myFile.setId(fId);
+    	fileService.delete(myFile);
     	int  businessId=Integer.parseInt(servletRequest.getParameter("id"));
     	HttpServletRequest request =ServletActionContext.getRequest();
-    	List<Object> fileList=new ArrayList<Object>();
+    	List<MyFile> fileList=new ArrayList<MyFile>();
     	fileList=fileService.getFileByBId(String.valueOf(businessId));
+    	
     	/*
     	for(int i=0;i<fileList.size();i++){
     		System.out.println(fileList.get(i).getFileName());
     	}
-    	request.setAttribute("fileList", fileList);
     	*/
+    	request.setAttribute("fileList", fileList);
+    	
+    	return "download";
+    }
+    public String download(){
+    	int  businessId=Integer.parseInt(servletRequest.getParameter("id"));
+    	HttpServletRequest request =ServletActionContext.getRequest();
+    	List<MyFile> fileList=new ArrayList<MyFile>();
+    	fileList=fileService.getFileByBId(String.valueOf(businessId));
+    	
+    	/*
+    	for(int i=0;i<fileList.size();i++){
+    		System.out.println(fileList.get(i).getFileName());
+    	}
+    	*/
+    	request.setAttribute("fileList", fileList);
+    	
     	return "download";
     }
 }

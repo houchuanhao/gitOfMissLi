@@ -11,7 +11,7 @@
 	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 	<property name="myeclipse.connection.profile">myhibernate</property>
 	<property name="connection.url">
-		jdbc:mysql://localhost:3306/mydata
+		jdbc:mysql://localhost:3306/mydata?characterEncoding=utf-8
 	</property>
 	<property name="connection.password"></property>
 	<property name="hbm2ddl.auto">update</property><!-- 更新数据库方式,参数有四种，分别是
@@ -22,6 +22,7 @@
 	 -->  
 	<property name="show_sql">true</property><!-- 是否后台打印语句 -->  
 	<mapping resource="com/model/file/File.hbm.xml"/><!--映射文件-->
+	<mapping resource="com/model/file/Warm.hbm.xml"/><!--映射文件-->
 </session-factory>
 
 </hibernate-configuration>

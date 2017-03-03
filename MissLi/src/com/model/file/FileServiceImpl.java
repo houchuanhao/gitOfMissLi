@@ -33,7 +33,7 @@ public class FileServiceImpl implements FileService {
 	
 	
 	@Override
-	public List<Object> getFileByBId(String bId){
+	public List<MyFile> getFileByBId(String bId){
 		int id=Integer.parseInt(bId);
 		return fileDao.getByBId(id);
 		

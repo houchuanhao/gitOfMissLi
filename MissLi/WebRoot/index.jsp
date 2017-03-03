@@ -157,7 +157,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="nav">
                         <li >
-                            <a href="f0_myBusiness.jsp" target="mainIframe">提醒</a>
+                            <a href="addWarm.jsp" target="mainIframe">提醒</a>
                         </li>
                         <li>
                             <a href="business_getMyBusiness" target="mainIframe">事务</a>

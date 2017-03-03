@@ -13,4 +13,4 @@
         <property name="userId" column="userId" type="java.lang.Integer"/>  
         <property name="businessId" column="businessId" type="java.lang.Integer"/>   
     </class>   
-</hibernate-mapping>  
+</hibernate-mapping>
