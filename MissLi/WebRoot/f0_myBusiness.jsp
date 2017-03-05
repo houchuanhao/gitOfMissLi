@@ -72,8 +72,8 @@
 									<s:property value="introduce" />
 								</p>
 								<p>
-									<s:a href="business_manage.action?id=%{id}">管理</s:a>
-									 <a class="btn btn-primary" href="#">前往</a>
+									<s:a href="business_manage.action?id=%{id}&&businessName=%{businessName}">管理</s:a>
+									 <a class="btn btn-primary" href="#">删除</a>
 								</p>
 							</div>
 						</div>

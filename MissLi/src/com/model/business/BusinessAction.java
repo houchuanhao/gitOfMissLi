@@ -9,6 +9,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.model.attribute.Attribute;
+import com.model.attribute.AttributeService;
+import com.model.attribute.AttributeServiceImpl;
 import com.model.user.User;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -53,11 +56,25 @@ public class BusinessAction extends ActionSupport implements ServletRequestAware
 		List<Business> businessList=new ArrayList<Business>();
 		businessList=businessService.getByBId(id);
 		Business bs=businessList.get(0);
-		servletRequest.setAttribute("business", bs);
-		
+		servletRequest.setAttribute("business", bs); 
+		AttributeService as=new AttributeServiceImpl();
+		//--------------------------------------
+		List<Attribute> attributeList=as.getByBId(Integer.parseInt(id));
+				//as.get(bs.getBusinessName());
+		servletRequest.setAttribute("attributeList", attributeList);
+		System.out.println(bs.getBusinessName());
+		for(int i=0;i<attributeList.size();i++){
+			System.out.println(attributeList.get(i).getAttributeName());
+		}
 		return "manage";
 	}
-	
+	public String getAll(){
+		User user=(User) servletRequest.getSession().getAttribute("user");
+		List<Business> businessList=businessService.getByUser(user.getUsername());
+		//System.out.println("getAll"+businessList.size());
+		servletRequest.setAttribute("businessList", businessList);
+		return "addExistBusiness";
+	}
 	
 	
 	

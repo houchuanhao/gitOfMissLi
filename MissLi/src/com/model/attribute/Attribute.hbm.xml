@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+      
+<hibernate-mapping>  
+    <class name="com.model.attribute.Attribute" table="attribute"><!--这里的table值对应数据库中的表名；如果没有table值，默认等于类名小写 -->  
+        <id name="id" column="id" type="java.lang.Integer">  
+            <generator class="native"></generator><!--采用主键自增长方式-->  
+        </id>  
+      
+        <property name="businessName" column="businessName" type="java.lang.String"/>
+        <!-- 这里的column值对应数据库中的属性名；如果没有column值，默认等于属性名 -->  
+        <property name="val" column="val" type="java.lang.String"/>  
+        <property name="type" column="type" type="java.lang.String"/>
+        <property name="attributeName" column="attributeName" type="java.lang.String"/>     
+        <property name="businessId" column="businessId" type="java.lang.Integer"/>
+    </class>   
+</hibernate-mapping>

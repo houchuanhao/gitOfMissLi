@@ -40,6 +40,10 @@ public class HibernateUtils {
         List<Object> list = HibernateUtils.getSession().createSQLQuery(sql).list();    
         return list;    
     } 
+    public static List<Object> queryByHql(String hql) {    
+        List<Object> list = HibernateUtils.getSession().createQuery(hql).list();    
+        return list;    
+    } 
     public static int excuteBySql(String sql)    
     {    
         int result ;    

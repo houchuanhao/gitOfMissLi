@@ -138,10 +138,14 @@ public class FileAction extends ActionSupport implements ServletRequestAware
     public String upload() throws Exception  //先调用service保存到数据库,再保存到本地
     {
     	
-    	HttpSession session=servletRequest.getSession();
-    	User user=(User) session.getAttribute("user");
-    	int businessId=Integer.parseInt(servletRequest.getParameter("id"));
-    	
+
+    	User user=(User) servletRequest.getSession().getAttribute("user");
+    	System.out.println(user.getId()+"uid-----------");
+    	String bId=servletRequest.getParameter("id");
+    	int businessId=0;
+    	if(bId!=null&&bId.length()>0&&!bId.equals("null")&&!bId.equals(null)){
+    	businessId=Integer.parseInt(bId);
+    	}
     	String root = ServletActionContext.getServletContext().getRealPath("/upload");
     	MyFile myFile =new MyFile();
     	myFile.setUserId(user.getId());
@@ -149,6 +153,7 @@ public class FileAction extends ActionSupport implements ServletRequestAware
     	myFile.setFileName(fileFileName);
     	myFile.setUploadFile(file);
     	myFile.setRoot(root);
+    	
     	fileService.save(myFile);
         System.out.println("file: " + file.getName());
        // System.out.println("file: " + file.getPath());
@@ -178,6 +183,22 @@ public class FileAction extends ActionSupport implements ServletRequestAware
     	HttpServletRequest request =ServletActionContext.getRequest();
     	List<MyFile> fileList=new ArrayList<MyFile>();
     	fileList=fileService.getFileByBId(String.valueOf(businessId));
+    	
+    	/*
+    	for(int i=0;i<fileList.size();i++){
+    		System.out.println(fileList.get(i).getFileName());
+    	}
+    	*/
+    	request.setAttribute("fileList", fileList);
+    	
+    	return "download";
+    }
+    public String dMyFile(){
+    	User user=(User)servletRequest.getSession().getAttribute("user");
+    	String userId=user.getId();
+    	HttpServletRequest request =ServletActionContext.getRequest();
+    	List<MyFile> fileList=new ArrayList<MyFile>();
+    	fileList=fileService.getFileByUId(userId);
     	
     	/*
     	for(int i=0;i<fileList.size();i++){

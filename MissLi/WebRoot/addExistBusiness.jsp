@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -68,7 +69,11 @@
             	<form role="form" action="business.action" method="get">
 					<div class="form-group">
 						 <label for="exampleInputEmail1">事务名</label>
-						 <input type="text" class="form-control" id="exampleInputEmail1" name="businessName" />
+						 <select name="businessName" class="form-control">
+						  <s:iterator value="# request.businessList" status="status">
+							<option value='<s:property value="businessName" />'><s:property value="businessName" /></option> 
+							</s:iterator>
+						</select> 
 					</div>
 					<div class="form-group">
 						 <label for="exampleInputEmail1">开始时间</label>

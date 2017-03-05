@@ -218,7 +218,7 @@ public class DbUtil {
      * 
      * */
     //4
-    private static Connection getConnection() throws Exception {
+    public static Connection getConnection() throws Exception {
         InitialContext cxt = new InitialContext();
         DataSource ds = (DataSource) cxt.lookup("java:/comp/env/jdbc/Struts2DB");
         if ( ds == null ) {

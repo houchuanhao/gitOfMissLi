@@ -77,7 +77,7 @@ public class FileDaoImpl implements FileDao{
 	@Override
 	public List<MyFile> getByUId(int id) {
 		Session session=HibernateUtils.getSession();
-		Query query=session.createSQLQuery("from file where userId="+String.valueOf(id));
+		Query query=session.createQuery("from MyFile where userId="+String.valueOf(id));
 		if(query.list()==null||query.list().isEmpty()){
 			return null;
 		}

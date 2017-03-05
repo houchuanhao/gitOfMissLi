@@ -64,20 +64,7 @@
 		<div class="col-md-12 column">	
 		
 		<div class="list-group">
-				 <a href="#" class="list-group-item active">我的提醒</a>
-				 <s:iterator value="# request.warmList" status="status">
-				<div class="list-group-item">
-					<s:property value="warmName" />
-					<div class="rig">333
-					</div>
-					<span class="badge">14</span> <span class="badge">14</span><span class="badge">14</span> <span class="badge">14</span>
-					即将于<s:property value="begin"/>开始 
-				</div>
-				</s:iterator>
-				<a class="list-group-item active"> <span class="badge">14</span> <span class="badge">14</span><span class="badge">14</span>Help</a>
-			</div>
-		
-		
+			<a href="#" class="list-group-item active">Home</a>
 			<s:iterator value="# request.warmList" status="status">
 			<s:if test="#status.first==true"><!-- 第一个 -->
 				<div class="row">
@@ -112,7 +99,15 @@
 					</s:if>
 					
 				</s:else>
-			</s:iterator>		
+			</s:iterator>
+			<a href="#" class="list-group-item active">Home</a>
+		</div>
+		
+		
+					
+		</div>
+	</div>
+</div>
 </body>
 
 <script>

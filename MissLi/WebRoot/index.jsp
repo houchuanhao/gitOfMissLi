@@ -166,12 +166,33 @@
 		                       </li> 
 	                       </ul>
                        </li>
+                       <li  class='dropdown'><a href='#' class='dropdown-toggle' data-toggle="dropdown">文件
+	                       <strong class='caret'>
+	                       </strong></a>
+	                       <ul class='dropdown-menu'> 
+		                       <li> <a href="uploadFile.jsp" target="mainIframe" id='myDiy'>文件上传</a> </li> 
+		                       <li> <a href="uploadFile_dMyFile"  target="mainIframe"   >文件下载</a> </li>     
+		                       <li class='divider'> 
+		                       </li> 
+	                       </ul>
+                       </li>
+                       <li  class='dropdown'><a href='#' class='dropdown-toggle' data-toggle="dropdown">事务
+	                       <strong class='caret'>
+	                       </strong></a>
+	                       <ul class='dropdown-menu'> 
+		                       <li> <a href="business_getMyBusiness" target="mainIframe" id='myDiy'>我的事务</a> </li> 
+		                       <li> <a href="business_getAll"  target="mainIframe"   >添加往年已有事务</a> </li>
+		                       <li> <a href="addBusiness.jsp"  target="mainIframe"   >添加新事务</a> </li>       
+		                       <li class='divider'> 
+		                       </li> 
+	                       </ul>
+                       </li>
                         	
                         <li>
                             <a href="business_getMyBusiness" target="mainIframe">事务</a>
                         </li>
                         <li>
-                            <a href="frame2.html" target="mainIframe">个人信息</a>
+                            <a href="frame2.html" target="mainIframe">我的文件</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

@@ -1,5 +1,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.model.business.*" %>
+<%@ page import="com.model.attribute.*" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -105,12 +107,13 @@
 						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-510651" href="#panel-element-72756689">事务对比</a>
 					</div>
 					<div id="panel-element-72756689" class="panel-collapse collapse">
+					<s:iterator value="# request.attributeList" status="status">
 						<div class="panel-body">
-							属性1
+						<a href="attribute_compare?attributeName=<s:property value='attributeName'/>&&businessName=<s:property value='businessName'/>"  target='iframe' >  <!-- -事务名，属性名 -->
+								<s:property value="attributeName" />
+						</a>
 						</div>
-						<div class="panel-body">
-							属性2
-						</div>
+					</s:iterator>
 					</div>
 				</div>
 				<div class="panel panel-default">
@@ -119,16 +122,20 @@
 					</div>
 					<div id="panel-element-1" class="panel-collapse collapse">
 						<div class="panel-body">
-							添加属性
+							<%
+								out.println("<a href='attribute_add?id="+bs.getId()+"' target='iframe'> 添加属性</a>");
+							 %>
 						</div>
 						<div class="panel-body">
-							属性2
+							<%
+								out.println("<a href='attribute_get?id="+bs.getId()+"&&businessName="+bs.getBusinessName()+"' target='iframe'> 所有属性</a>");
+							 %>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10 column">
+		<div class="col-md-10 column">		
 		<iframe name="iframe" id="iframe">
 		</iframe>
 		</div>

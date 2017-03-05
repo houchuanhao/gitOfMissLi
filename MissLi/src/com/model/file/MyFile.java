@@ -65,6 +65,6 @@ public class MyFile {
 	}
 	public void setUserId(String userId){
 		int uid=Integer.parseInt(userId);
-		id=uid;
+		this.userId=uid;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ page import="com.model.user.User" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -26,7 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <%
  String id=(String)request.getParameter("id");
+ User user=(User)request.getSession().getAttribute("user");
+ String userId=user.getId();
+ out.println(userId);
    %>
+  
   
   　　<form action="uploadFile_upload<% out.print("?id="+id); %>" method="post" enctype="multipart/form-data">
         <input type="file" name="file"><br>
